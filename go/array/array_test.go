@@ -193,6 +193,34 @@ func TestLongestCommonPrefix(t *testing.T)  {
 
 
 
+func TestPascalsTriangle(t *testing.T)  {
+	test_items := []struct{
+		id int
+		numRows int
+		exp [][]int
+	} {
+		{1, 5, [][]int{{1}, {1, 1}, {1, 2, 1}, {1, 3, 3, 1}, {1, 4, 6, 4, 1}}},
+		{2, 1, [][]int{{1}}},
+	}
+
+	for _, item := range test_items {
+		t.Run(strconv.Itoa(item.id), func(t *testing.T) {
+			got := PascalsTriangle(item.numRows)
+			if (!reflect.DeepEqual(got, item.exp)){
+				t.Errorf("got: %#v, exp: %#v", got, item.exp)
+			}
+		})
+	}
+}
+
+
+
+
+
+
+
+
+
 
 
 

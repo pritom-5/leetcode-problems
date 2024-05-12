@@ -149,6 +149,35 @@ func LongestCommonPrefix(strs []string) string {
 	return prefix
 }
 
+func PascalsTriangle (numRows int) [][]int {
+	var pascals_triangle [][]int = [][]int{{1}}
+
+	for i := 1; i < numRows; i++ {
+		prev_row := pascals_triangle[i - 1]
+		curr_row := make([]int, i + 1)
+		for j := 0; j <= i; j++ {
+			var val_1, val_2 int
+
+			if (j <= 0) {
+				val_1 = 0
+			} else {
+				val_1 = prev_row[j - 1]
+			}
+
+			if (j >= len(prev_row)) {
+				val_2 = 0
+			} else {
+				val_2 = prev_row[j]
+			}
+
+			curr_row[j] = val_1 + val_2
+		}
+		pascals_triangle = append(pascals_triangle, curr_row)
+	}
+
+	return pascals_triangle
+
+}
 
 
 
