@@ -326,3 +326,55 @@ func CanPlantFlower(flowerbed []int, n int) bool {
 
 	return counter >= n
 }
+
+
+func MajorityElement(nums []int) int  {
+	nums_map := make(map[int]int)
+
+	for _, num := range nums {
+		_, ok := nums_map[num]
+		if ok {
+			nums_map[num] += 1
+		} else {
+			nums_map[num] = 1
+		}
+	}
+
+	majority_element, majority_key := 0, 0
+
+	for k, v := range nums_map {
+		if v > majority_element {
+			majority_element = v
+			majority_key = k
+		}
+	}
+	return majority_key
+}
+ 
+func MajorityElement_2(nums []int) int  {
+	counter, majority_element := 0, nums[0]
+
+	for _, num := range nums {
+		if (num == majority_element) {
+			counter += 1
+			continue
+		}
+
+		if (counter == 0) {
+			counter += 1
+			majority_element = num
+		} else {
+			counter -= 1
+		}
+
+	}
+
+	return majority_element
+}
+
+
+
+
+
+
+

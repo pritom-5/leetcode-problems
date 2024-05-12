@@ -283,3 +283,60 @@ func TestCanPlantFlower(t *testing.T) {
 		}
 	}
 }
+
+func TestMajorityElement(t *testing.T)  {
+	test_items := []struct{
+		id int
+		nums []int
+		exp int
+	} {
+		{id: 1, nums: []int{3, 2, 3}, exp: 3},
+		{id: 2, nums: []int{2,2,1,1,1,2,2}, exp: 2},
+	}
+
+	for _, item := range test_items {
+		t.Run(strconv.Itoa(item.id), func(t *testing.T) {
+			got := MajorityElement(item.nums)
+
+			if got != item.exp {
+				t.Errorf("got: %d, exp: %d", got, item.exp)
+			}
+		})
+
+	}
+}
+
+
+func TestMajorityElement_2(t *testing.T)  {
+	test_items := []struct{
+		id int
+		nums []int
+		exp int
+	} {
+		{id: 1, nums: []int{3, 2, 3}, exp: 3},
+		{id: 2, nums: []int{2,2,1,1,1,2,2}, exp: 2},
+	}
+
+	for _, item := range test_items {
+		t.Run(strconv.Itoa(item.id), func(t *testing.T) {
+			got := MajorityElement_2(item.nums)
+
+			if got != item.exp {
+				t.Errorf("got: %d, exp: %d", got, item.exp)
+			}
+		})
+
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
