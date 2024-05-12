@@ -1,4 +1,12 @@
+// ?????
+// what is the difference between []int{} and make([]int, 0) and var name []int
+// difference between byte and rune
+
 package array
+
+import (
+	"strings"
+)
 
 func ContainsDuplicate(nums []int) bool  {
 	nums_map := make(map[int]int)
@@ -74,13 +82,72 @@ func GreatestRightSide (arr []int) []int {
 }
 
 
+func IsSubsequence (s, t string) bool {
+	left, right := 0, 0
+
+	for (left <= right && left < len(s) && right < len(t)){
+		left_ch := s[left]
+		right_ch := t[right]
+
+		// fmt.Printf("left_ch: %d,right_ch: %d",left_ch,right_ch)
+
+		if (left_ch == right_ch) {
+			left += 1
+		}
+		right += 1
+	}
+
+	return left == len(s)
+}
 
 
 
+func LengthOfLastWord (s string) int {
+	trimed_s := strings.Trim(s, " ")
+	split_s_slice := strings.Split(trimed_s, " ")
+	return len(split_s_slice[len(split_s_slice) - 1])
+}
 
 
+func TwoSum(nums []int, target int) [2]int {
+	for i := 0; i < len(nums); i++ {
+		for j := 1; j < len(nums); j++ {
+			if (nums[i] + nums[j] == target) {
+				return [2]int{i, j}
+			}
+		}
+	}
+	return [2]int{}
+} 
 
+func smallestWord (strs []string) string {
+	smallest_word := strs[0]
 
+	for _, str := range strs {
+		if (len(str) < len(smallest_word)) {
+			smallest_word = str
+		}
+	}
+	return smallest_word
+}
+
+func LongestCommonPrefix(strs []string) string {
+
+	prefix := ""
+	smallest_word := smallestWord(strs)
+
+	for i, letter := range smallest_word {
+		for _, str := range strs {
+
+			if (rune(str[i]) != letter) {
+				return prefix
+			}
+		}
+		prefix += string(letter)
+	}
+
+	return prefix
+}
 
 
 

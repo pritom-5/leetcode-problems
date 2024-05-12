@@ -103,6 +103,96 @@ func TestGreatestRightSide(t *testing.T)  {
 }
 
 
+func TestIsSubsequence(t *testing.T)  {
+	test_items := []struct{
+		id int
+		s, t string
+		exp bool
+	} {
+		{1, "abc", "ahbgdc", true},
+		{2, "axc", "ahbgdc", false},
+	}
+
+	for _, item := range test_items {
+		t.Run(strconv.Itoa(item.id), func(t *testing.T) {
+			got := IsSubsequence(item.s, item.t)
+			if got != item.exp {
+				t.Errorf("got: %t, exp: %t", got, item.exp)
+			}
+		})
+	}
+}
+
+
+
+func TestLengthOfLastWord(t *testing.T)  {
+	test_items := []struct{
+		id int
+		s string
+		exp int
+	} {
+		{1, "Hello World", 5},
+		{2, "   fly me   to   the moon  ", 4},
+		{3, "luffy is still joyboy", 6},
+	}
+
+	for _, item := range test_items {
+		t.Run(strconv.Itoa(item.id), func(t *testing.T) {
+			got := LengthOfLastWord(item.s)
+			if got != item.exp {
+				t.Errorf("got: %d, exp: %d", got, item.exp)
+			}
+		})
+	}
+}
+
+func TestTwoSum(t *testing.T)  {
+	test_items := []struct{
+		id int
+		nums []int
+		target int
+		exp [2]int
+	} {
+		{1, []int{2, 7, 11, 15}, 9, [2]int{0, 1}},
+		{2, []int{3, 2, 4}, 6, [2]int{1, 2}},
+		{3, []int{3, 3}, 6, [2]int{0, 1}},
+	}
+
+	for _, item := range test_items {
+
+		t.Run(strconv.Itoa(item.id), func(t *testing.T) {
+			got := TwoSum(item.nums, item.target)
+			if (!reflect.DeepEqual(got, item.exp)) {
+				t.Errorf("got: %#v, exp: %#v", got, item.exp)
+			}
+		})
+	}
+}
+
+
+
+func TestLongestCommonPrefix(t *testing.T)  {
+	test_items := []struct{
+		id int
+		s []string
+		exp string
+	} {
+		{1, []string{"flower", "flow", "flight"}, "fl"},
+		{1, []string{"dog", "racecar", "car"}, ""},
+	}
+
+	for _, item := range test_items {
+		t.Run(strconv.Itoa(item.id), func(t *testing.T) {
+			got := LongestCommonPrefix(item.s)
+			if got != item.exp {
+				t.Errorf("got: %s, exp: %s", got, item.exp)
+			}
+		})
+	}
+}
+
+
+
 
 
 
