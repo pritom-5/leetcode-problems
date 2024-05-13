@@ -89,7 +89,6 @@ func IsSubsequence(s, t string) bool {
 		left_ch := s[left]
 		right_ch := t[right]
 
-		// fmt.Printf("left_ch: %d,right_ch: %d",left_ch,right_ch)
 
 		if left_ch == right_ch {
 			left += 1

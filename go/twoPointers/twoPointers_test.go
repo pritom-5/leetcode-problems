@@ -13,11 +13,12 @@ func TestValidPallindrome(t *testing.T)  {
 	} {
 		{id: 1, s: "A man, a plan, a canal: Panama", exp: true},
 		{id: 2, s: "race a car", exp: false},
+		{id: 3, s: "0P", exp: false},
 	}
 
 	for _, item := range test_items {
 		t.Run(strconv.Itoa(item.id), func(t *testing.T) {
-			got := ValidPallindrome(item.s)
+			got := IsPalindrome_2(item.s)
 			if got != item.exp {
 				t.Errorf("got: %t, exp: %t", got, item.exp)
 			}
