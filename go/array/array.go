@@ -6,9 +6,9 @@
 package array
 
 import (
+	"slices"
 	"strings"
 )
-
 func ContainsDuplicate(nums []int) bool {
 	nums_map := make(map[int]int)
 
@@ -371,6 +371,70 @@ func MajorityElement_2(nums []int) int  {
 
 	return majority_element
 }
+
+
+func NextGreaterElement(nums1, nums2 []int) []int  {
+	greater_element_slice := make([]int, len(nums1))
+
+	for i:= range greater_element_slice {
+		greater_element_slice[i] = -1
+	}
+
+	for i, num1 := range nums1 {
+		nums1_idx := slices.Index(nums2, num1)
+		for j := nums1_idx; j < len(nums2); j++ {
+			num2 := nums2[j]
+			if num2 > num1 {
+				greater_element_slice[i] = num2
+				break
+			}
+		}
+
+
+	}
+	
+	return greater_element_slice
+}
+
+func findTotal (nums []int) int {
+	total := 0
+	for _, num := range nums {
+		total += num
+	}
+	return total
+}
+
+func FindPivotIndex(nums []int) int  {
+	total := findTotal(nums)
+	left_total := 0
+	for i, num := range nums {
+		if left_total == total - left_total - num {
+			return i
+		}
+		left_total += num
+	}
+	return -1
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

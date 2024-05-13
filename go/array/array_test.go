@@ -329,6 +329,81 @@ func TestMajorityElement_2(t *testing.T)  {
 	}
 }
 
+func TestNextGreaterElement(t *testing.T)  {
+	test_items := []struct{
+		id int
+		nums1, nums2, exp []int
+	} {
+		{id: 1, nums1: []int{4, 1, 2}, nums2: []int{1, 3, 4, 2}, exp: []int{-1, 3, -1}},
+		{id: 2, nums1: []int{2, 4}, nums2: []int{1, 2, 3, 4}, exp: []int{3, -1}},
+	}
+
+	for _, item := range test_items {
+		t.Run(strconv.Itoa(item.id), func(t *testing.T) {
+			got := NextGreaterElement(item.nums1, item.nums2)
+
+			if (!reflect.DeepEqual(got, item.exp)){
+				t.Errorf("got: %#v, exp: %#v", got, item.exp)
+			}
+		})
+	}
+}
+
+
+
+func TestFindPivotIndex(t *testing.T)  {
+	test_items := []struct{
+		id int
+		nums []int
+		exp int
+	} {
+		{id: 1, nums: []int{1,7,3,6,5,6}, exp: 3},
+		{id: 2, nums: []int{1,2,3}, exp: -1},
+		{id: 3, nums: []int{2,1,-1}, exp: 0},
+	}
+
+	for _, item := range test_items {
+		t.Run(strconv.Itoa(item.id), func(t *testing.T) {
+			got := FindPivotIndex(item.nums)
+
+			if (!reflect.DeepEqual(got, item.exp)){
+				t.Errorf("got: %#v, exp: %#v", got, item.exp)
+			}
+		})
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
