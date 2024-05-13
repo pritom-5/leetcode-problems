@@ -6,6 +6,7 @@
 package array
 
 import (
+	"math"
 	"slices"
 	"strings"
 )
@@ -416,22 +417,128 @@ func FindPivotIndex(nums []int) int  {
 	return -1
 }
 
+func FindDisappearedNumbers(nums []int) []int  {
+	// make a dump arr full of -1
+	// range through nums and make idx from nums and dump arr
+	dump_arr := make([]int, len(nums))
+
+	for _, num:= range nums {
+		dump_arr[num - 1] = num
+	}
+
+	output_arr := make([]int, 0)
+
+	for i, num := range dump_arr {
+		if (num == 0) {
+			output_arr = append(output_arr, i + 1)
+		}
+	}
+	return output_arr
+}
+
+func letterMap (text string) map[rune]int {
+	letter_map := make(map[rune]int)
+
+	for _, letter := range text {
+		_, ok := letter_map[letter]
+		if (ok) {
+			letter_map[letter] += 1
+		} else {
+			letter_map[letter] = 1
+		}
+	}
+	return letter_map
+}
+
+func NosBalloons (text string) int {
+	text_letter_map := letterMap(text)
+	word_balloon_letter_map := letterMap("balloon") 
+
+	max_nos_balloons := 100_000
+
+	for k, v := range word_balloon_letter_map {
+		text_letter_value := text_letter_map[k]
+		nos_letter := math.Floor(float64(text_letter_value) / float64(v))
+
+		if (nos_letter < float64(max_nos_balloons)) {
+			max_nos_balloons = int(nos_letter)
+		}
+
+	}
+	return max_nos_balloons
+}
+
+func WordPattern (pattern, s string) bool {
+	pattern_s_map := make(map[string]string)
+	s_pattern_map := make(map[string]string)
+
+	pattern_letters := strings.Split(pattern, "")
+	s_words := strings.Split(s, " ")
+
+	if len(pattern_letters) != len(s_words) {
+		return false
+	}
+
+	for i, pattern_letter := range pattern_letters {
+		curr_s_word := s_words[i]
+
+		item, ok := pattern_s_map[pattern_letter]
+		if ok {
+			if (item != curr_s_word) {
+				return false
+			}
+		} else {
+			pattern_s_map[pattern_letter] = curr_s_word
+		}
 
 
+		item, ok = s_pattern_map[curr_s_word]
+		if ok {
+			if (item != pattern_letter) {
+				return false
+			}
+		} else {
+			s_pattern_map[curr_s_word]= pattern_letter
+		}
+	}
+
+	return true
+}
 
 
+func FindDiffTwoArray(nums1, nums2 []int) [2][]int  {
+
+	nums_1_missing_slice := make([]int, 0)
+	nums_1_missing_map := make(map[int]struct{})
+	nums_2_missing_slice := make([]int, 0)
+	nums_2_missing_map := make(map[int]struct{})
+
+	for _, num1 := range nums1 {
+		idx := slices.Index(nums2, num1)
+		if idx < 0 {
+			_, ok := nums_1_missing_map[num1]
+			if !ok {
+				nums_1_missing_slice = append(nums_1_missing_slice, num1)
+				nums_1_missing_map[num1] = struct{}{}
+			}
+		}
+	}
 
 
+	for _, num2 := range nums2 {
+		idx := slices.Index(nums1, num2)
+		if idx < 0 {
+			_, ok := nums_2_missing_map[num2]
+			if !ok {
+				nums_2_missing_slice = append(nums_2_missing_slice, num2)
+				nums_2_missing_map[num2] = struct{}{}
+			}
+		}
+	}
 
-
-
-
-
-
-
-
-
-
+	return [2][]int {nums_1_missing_slice, nums_2_missing_slice}
+	
+}
 
 
 

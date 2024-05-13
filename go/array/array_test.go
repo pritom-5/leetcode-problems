@@ -366,6 +366,26 @@ func TestFindPivotIndex(t *testing.T)  {
 		t.Run(strconv.Itoa(item.id), func(t *testing.T) {
 			got := FindPivotIndex(item.nums)
 
+			if (got != item.exp){
+				t.Errorf("got: %#v, exp: %#v", got, item.exp)
+			}
+		})
+	}
+}
+
+func TestFindDisappearedNumbers(t *testing.T)  {
+	test_items := []struct{
+		id int
+		nums, exp []int
+	} {
+		{id: 1, nums: []int{4,3,2,7,8,2,3,1}, exp: []int{5,6}},
+		{id: 1, nums: []int{1, 1}, exp: []int{2}},
+	}
+
+	for _, item := range test_items {
+		t.Run(strconv.Itoa(item.id), func(t *testing.T) {
+			got := FindDisappearedNumbers(item.nums)
+
 			if (!reflect.DeepEqual(got, item.exp)){
 				t.Errorf("got: %#v, exp: %#v", got, item.exp)
 			}
@@ -374,44 +394,71 @@ func TestFindPivotIndex(t *testing.T)  {
 }
 
 
+func TestNosBalloons(t *testing.T)  {
+	test_items := []struct{
+		id, exp int
+		text string
+	} {
+		{id: 1, text: "nlaebolko", exp: 1},
+		{id: 2, text: "loonbalxballpoon", exp: 2},
+		{id: 3, text: "leetcode", exp: 0},
+	}
+
+	for _, item := range test_items {
+		t.Run(strconv.Itoa(item.id), func(t *testing.T) {
+			got := NosBalloons(item.text)
+
+			if (got != item.exp) {
+				t.Errorf("got: %d, exp: %d", got, item.exp)
+			}
+		})
+	}
+}
 
 
+func TestWordPattern(t *testing.T)  {
+	test_items := []struct{
+		id int
+		pattern, s string
+		exp bool
+	} {
+		{id: 1, pattern: "abba", s: "dog cat cat dog", exp: true},
+		{id: 2, pattern: "abba", s: "dog cat cat fish", exp: false},
+		{id: 3, pattern: "aaaa", s: "dog cat cat dog", exp: false},
+		{id: 4, pattern: "aaa", s: "cat cat cat cat", exp: false},
+	}
+
+	for _, item := range test_items {
+		t.Run(strconv.Itoa(item.id), func(t *testing.T) {
+			got := WordPattern(item.pattern, item.s)
+
+			if (got != item.exp) {
+				t.Errorf("got: %t, exp: %t", got, item.exp)
+			}
+		})
+	}
+}
 
 
+func TestFindDiffTwoArray(t *testing.T)  {
+	test_items := []struct{
+		id int
+		nums1, nums2 []int
+		exp [2][]int
+	} {
+		{id: 1, nums1: []int{1, 2, 3}, nums2: []int{2, 4, 6}, exp: [2][]int{{1, 3}, {4, 6}} },
+		{id: 2, nums1: []int{1, 2, 3, 3}, nums2: []int{1, 1, 2, 2}, exp: [2][]int{{3}, {}} },
+	}
 
+	for _, item := range test_items {
+		t.Run(strconv.Itoa(item.id), func(t *testing.T) {
+			got := FindDiffTwoArray(item.nums1, item.nums2)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+			if (!reflect.DeepEqual(got, item.exp)) {
+				t.Errorf("got: %#v, exp: %#v", got, item.exp)
+			}
+		})
+	}
+}
 
 
