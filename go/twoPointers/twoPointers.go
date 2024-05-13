@@ -2,6 +2,10 @@ package twopointers
 
 import (
 	"errors"
+	"fmt"
+	"math"
+	"slices"
+	"sort"
 	"strconv"
 	"unicode"
 )
@@ -121,9 +125,70 @@ func IsPalindromeII(s string) bool  {
 	
 }
 
+func DiffOfKScores(nums []int, k int) int {
+	if (len(nums) == 1) {return 0}
+
+	sort.Ints(nums)
+	l, r := 0, k - 1
+
+	diff := math.MaxInt32
 
 
+	for r < len(nums) {
+		tmp_diff := nums[r] - nums[l] 
+		if (diff > tmp_diff) {
+			diff = tmp_diff
+		}
+		l += 1
+		r += 1
+	}
+	return diff
+}
 
+func MergeStringsAlternatively (word1, word2 string) string {
+	output_string := ""
+	l, r := 0, 0
+
+	for l < len(word1) && r < len(word2) {
+		output_string += string(word1[l])
+		output_string += string(word2[r])
+		l += 1
+		r += 1
+	}
+
+	if (l < len(word1)) {
+		output_string += word1[l:]
+	}
+	if (r < len(word2)) {
+		output_string += word2[r:]
+	}
+
+	return output_string
+}
+
+func ReverseString (s []string) []string {
+	s_copy := slices.Clone(s)
+	slices.Reverse(s_copy)
+	return s_copy
+}
+
+func RemoveDuplicateFromSortedArray (nums []int) int {
+	count := 1
+	curr_unique,l , r := nums[0], 1, 1
+
+	for l < len(nums) {
+		if nums[l] != curr_unique {
+			count += 1
+			curr_unique = nums[l]
+			nums[r] = curr_unique
+			r += 1
+		}
+		l += 1
+	}
+
+	fmt.Printf("nums: %#v", nums)
+	return count
+}
 
 
 
