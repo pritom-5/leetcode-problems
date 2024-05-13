@@ -1,6 +1,7 @@
 package twopointers
 
 import (
+	"errors"
 	"strconv"
 	"unicode"
 )
@@ -12,7 +13,6 @@ func GetCleanString(s string) string {
 		letter := rune(s[start])
 		 
 		println(letter)
-
 
 		if (letter >= 48 && letter <= 57) {
 			clean_string += strconv.Itoa(int(letter))
@@ -85,7 +85,41 @@ func IsPalindrome_2 (s string) bool {
 	return true
 }
 
+func checkPalindrome(s string, i, j int) (error, []int){
+	for i <= j {
+		left_item := s[i]
+		right_item := s[j]
 
+		if left_item != right_item {
+			return errors.New("not palindrome"), []int{i, j}
+		}
+		 
+		i+=1
+		j-=1
+	}
+	return nil, []int{-1, -1}
+}
+
+func IsPalindromeII(s string) bool  {
+
+	err, left_right := checkPalindrome(s, 0, len(s) - 1)
+	if (err == nil) {
+		return true
+	}
+	i, j := left_right[0], left_right[1]
+
+	err, _ = checkPalindrome(s, i + 1, j)
+	if (err == nil) {
+		return true
+	}
+	err, _ = checkPalindrome(s, i , j - 1)
+	if (err == nil) {
+		return true
+	}
+
+	return false
+	
+}
 
 
 
