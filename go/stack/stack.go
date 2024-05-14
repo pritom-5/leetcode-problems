@@ -85,7 +85,6 @@ func BaseballGame(ops []string) int  {
 		default:
 			stack = append(stack, op)
 }
-
 	}
 	
 	return getSumOfArray(stack)
