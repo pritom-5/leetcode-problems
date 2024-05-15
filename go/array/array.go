@@ -10,6 +10,7 @@ import (
 	"slices"
 	"strings"
 )
+
 func ContainsDuplicate(nums []int) bool {
 	nums_map := make(map[int]int)
 
@@ -88,7 +89,6 @@ func IsSubsequence(s, t string) bool {
 	for left <= right && left < len(s) && right < len(t) {
 		left_ch := s[left]
 		right_ch := t[right]
-
 
 		if left_ch == right_ch {
 			left += 1
@@ -327,8 +327,7 @@ func CanPlantFlower(flowerbed []int, n int) bool {
 	return counter >= n
 }
 
-
-func MajorityElement(nums []int) int  {
+func MajorityElement(nums []int) int {
 	nums_map := make(map[int]int)
 
 	for _, num := range nums {
@@ -350,17 +349,17 @@ func MajorityElement(nums []int) int  {
 	}
 	return majority_key
 }
- 
-func MajorityElement_2(nums []int) int  {
+
+func MajorityElement_2(nums []int) int {
 	counter, majority_element := 0, nums[0]
 
 	for _, num := range nums {
-		if (num == majority_element) {
+		if num == majority_element {
 			counter += 1
 			continue
 		}
 
-		if (counter == 0) {
+		if counter == 0 {
 			counter += 1
 			majority_element = num
 		} else {
@@ -372,11 +371,10 @@ func MajorityElement_2(nums []int) int  {
 	return majority_element
 }
 
-
-func NextGreaterElement(nums1, nums2 []int) []int  {
+func NextGreaterElement(nums1, nums2 []int) []int {
 	greater_element_slice := make([]int, len(nums1))
 
-	for i:= range greater_element_slice {
+	for i := range greater_element_slice {
 		greater_element_slice[i] = -1
 	}
 
@@ -390,13 +388,12 @@ func NextGreaterElement(nums1, nums2 []int) []int  {
 			}
 		}
 
-
 	}
-	
+
 	return greater_element_slice
 }
 
-func findTotal (nums []int) int {
+func findTotal(nums []int) int {
 	total := 0
 	for _, num := range nums {
 		total += num
@@ -404,11 +401,11 @@ func findTotal (nums []int) int {
 	return total
 }
 
-func FindPivotIndex(nums []int) int  {
+func FindPivotIndex(nums []int) int {
 	total := findTotal(nums)
 	left_total := 0
 	for i, num := range nums {
-		if left_total == total - left_total - num {
+		if left_total == total-left_total-num {
 			return i
 		}
 		left_total += num
@@ -416,31 +413,31 @@ func FindPivotIndex(nums []int) int  {
 	return -1
 }
 
-func FindDisappearedNumbers(nums []int) []int  {
+func FindDisappearedNumbers(nums []int) []int {
 	// make a dump arr full of -1
 	// range through nums and make idx from nums and dump arr
 	dump_arr := make([]int, len(nums))
 
-	for _, num:= range nums {
-		dump_arr[num - 1] = num
+	for _, num := range nums {
+		dump_arr[num-1] = num
 	}
 
 	output_arr := make([]int, 0)
 
 	for i, num := range dump_arr {
-		if (num == 0) {
-			output_arr = append(output_arr, i + 1)
+		if num == 0 {
+			output_arr = append(output_arr, i+1)
 		}
 	}
 	return output_arr
 }
 
-func letterMap (text string) map[rune]int {
+func letterMap(text string) map[rune]int {
 	letter_map := make(map[rune]int)
 
 	for _, letter := range text {
 		_, ok := letter_map[letter]
-		if (ok) {
+		if ok {
 			letter_map[letter] += 1
 		} else {
 			letter_map[letter] = 1
@@ -449,9 +446,9 @@ func letterMap (text string) map[rune]int {
 	return letter_map
 }
 
-func NosBalloons (text string) int {
+func NosBalloons(text string) int {
 	text_letter_map := letterMap(text)
-	word_balloon_letter_map := letterMap("balloon") 
+	word_balloon_letter_map := letterMap("balloon")
 
 	max_nos_balloons := 100_000
 
@@ -459,7 +456,7 @@ func NosBalloons (text string) int {
 		text_letter_value := text_letter_map[k]
 		nos_letter := math.Floor(float64(text_letter_value) / float64(v))
 
-		if (nos_letter < float64(max_nos_balloons)) {
+		if nos_letter < float64(max_nos_balloons) {
 			max_nos_balloons = int(nos_letter)
 		}
 
@@ -467,7 +464,7 @@ func NosBalloons (text string) int {
 	return max_nos_balloons
 }
 
-func WordPattern (pattern, s string) bool {
+func WordPattern(pattern, s string) bool {
 	pattern_s_map := make(map[string]string)
 	s_pattern_map := make(map[string]string)
 
@@ -483,29 +480,27 @@ func WordPattern (pattern, s string) bool {
 
 		item, ok := pattern_s_map[pattern_letter]
 		if ok {
-			if (item != curr_s_word) {
+			if item != curr_s_word {
 				return false
 			}
 		} else {
 			pattern_s_map[pattern_letter] = curr_s_word
 		}
 
-
 		item, ok = s_pattern_map[curr_s_word]
 		if ok {
-			if (item != pattern_letter) {
+			if item != pattern_letter {
 				return false
 			}
 		} else {
-			s_pattern_map[curr_s_word]= pattern_letter
+			s_pattern_map[curr_s_word] = pattern_letter
 		}
 	}
 
 	return true
 }
 
-
-func FindDiffTwoArray(nums1, nums2 []int) [2][]int  {
+func FindDiffTwoArray(nums1, nums2 []int) [2][]int {
 
 	nums_1_missing_slice := make([]int, 0)
 	nums_1_missing_map := make(map[int]struct{})
@@ -523,7 +518,6 @@ func FindDiffTwoArray(nums1, nums2 []int) [2][]int  {
 		}
 	}
 
-
 	for _, num2 := range nums2 {
 		idx := slices.Index(nums1, num2)
 		if idx < 0 {
@@ -535,16 +529,6 @@ func FindDiffTwoArray(nums1, nums2 []int) [2][]int  {
 		}
 	}
 
-	return [2][]int {nums_1_missing_slice, nums_2_missing_slice}
-	
+	return [2][]int{nums_1_missing_slice, nums_2_missing_slice}
+
 }
-
-
-
-
-
-
-
-
-
-

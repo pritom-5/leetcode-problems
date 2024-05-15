@@ -5,9 +5,9 @@ import (
 	"strconv"
 )
 
-func IsValid(s string) bool  {
+func IsValid(s string) bool {
 
-	samples := map[string]struct{} {
+	samples := map[string]struct{}{
 		"()": {},
 		"[]": {},
 		"{}": {},
@@ -25,16 +25,16 @@ func IsValid(s string) bool  {
 			continue
 		}
 
-		last_popped_paren := paren_stack[len(paren_stack) - 1]
+		last_popped_paren := paren_stack[len(paren_stack)-1]
 		tmp_combined_paren := string(curr) + string(last_popped_paren)
 
 		if _, ok := samples[tmp_combined_paren]; ok {
-			paren_stack = paren_stack[:len(paren_stack) - 1]
+			paren_stack = paren_stack[:len(paren_stack)-1]
 			continue
 		}
 
 		paren_stack = append(paren_stack, curr)
-		
+
 		fmt.Printf("paren_stack: %#v\n", paren_stack)
 	}
 
@@ -55,16 +55,16 @@ func getSumOfArray(arr []string) int {
 	return total
 }
 
-func BaseballGame(ops []string) int  {
+func BaseballGame(ops []string) int {
 	stack := make([]string, 0)
 
 	for _, op := range ops {
 		switch op {
 		case "C":
-			stack = stack[:len(stack) - 1]
+			stack = stack[:len(stack)-1]
 
 		case "D":
-			last_int_item, err := strconv.Atoi(stack[len(stack) - 1])
+			last_int_item, err := strconv.Atoi(stack[len(stack)-1])
 			if err != nil {
 				continue
 			}
@@ -72,29 +72,20 @@ func BaseballGame(ops []string) int  {
 			stack = append(stack, strconv.Itoa(doubled))
 
 		case "+":
-			last_int_item, err := strconv.Atoi(stack[len(stack) - 1])
+			last_int_item, err := strconv.Atoi(stack[len(stack)-1])
 			if err != nil {
 				continue
 			}
-			second_last_int_item, err := strconv.Atoi(stack[len(stack) - 2])
+			second_last_int_item, err := strconv.Atoi(stack[len(stack)-2])
 			if err != nil {
 				continue
 			}
-			stack = append(stack, strconv.Itoa(last_int_item + second_last_int_item))
+			stack = append(stack, strconv.Itoa(last_int_item+second_last_int_item))
 
 		default:
 			stack = append(stack, op)
-}
+		}
 	}
-	
+
 	return getSumOfArray(stack)
 }
-
-
-
-
-
-
-
-
-

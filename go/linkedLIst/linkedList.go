@@ -1,10 +1,8 @@
 package linkedlist
 
-
-
 type linkedListNode struct {
 	value int
-	next *linkedListNode
+	next  *linkedListNode
 }
 
 type linkedList struct {
@@ -12,7 +10,7 @@ type linkedList struct {
 	size int
 }
 
-func (ll *linkedList) AddNode (val int) {
+func (ll *linkedList) AddNode(val int) {
 	ll.size += 1
 
 	new_node := &linkedListNode{value: val, next: nil}
@@ -26,11 +24,11 @@ func (ll *linkedList) AddNode (val int) {
 	for current.next != nil {
 		current = current.next
 	}
-	
+
 	current.next = new_node
 }
 
-func (ll *linkedList) ReverseLinkedList () {
+func (ll *linkedList) ReverseLinkedList() {
 	var prev, curr, next *linkedListNode
 	curr = ll.head
 
@@ -44,8 +42,7 @@ func (ll *linkedList) ReverseLinkedList () {
 	ll.head = prev
 }
 
-
-func createLinkedListFromSlice (values []int) *linkedList {
+func createLinkedListFromSlice(values []int) *linkedList {
 	linked_list := &linkedList{}
 	for _, val := range values {
 		linked_list.AddNode(val)
@@ -58,30 +55,30 @@ func mergeLinkedList(ll_1, ll_2 *linkedList) *linkedList {
 	new_ll_slice := make([]int, 0)
 
 	for ll_1_node != nil && ll_2_node != nil {
-			if ll_1_node.value >= ll_2_node.value {
-				new_ll_slice = append(new_ll_slice, ll_2_node.value)
-				ll_2_node = ll_2_node.next
-				
-			} else {
-				new_ll_slice = append(new_ll_slice, ll_1_node.value)
-				ll_1_node = ll_1_node.next
-			}
+		if ll_1_node.value >= ll_2_node.value {
+			new_ll_slice = append(new_ll_slice, ll_2_node.value)
+			ll_2_node = ll_2_node.next
+
+		} else {
+			new_ll_slice = append(new_ll_slice, ll_1_node.value)
+			ll_1_node = ll_1_node.next
+		}
 	}
 
 	for ll_1_node != nil {
-			new_ll_slice = append(new_ll_slice, ll_1_node.value)
-			ll_1_node = ll_1_node.next
+		new_ll_slice = append(new_ll_slice, ll_1_node.value)
+		ll_1_node = ll_1_node.next
 	}
 	for ll_2_node != nil {
-			new_ll_slice = append(new_ll_slice, ll_2_node.value)
-			ll_2_node = ll_2_node.next
+		new_ll_slice = append(new_ll_slice, ll_2_node.value)
+		ll_2_node = ll_2_node.next
 	}
 
 	return createLinkedListFromSlice(new_ll_slice)
 }
 
-func IsPalindrome (nums []int) bool {
-	left, right := 0, len(nums) - 1 
+func IsPalindrome(nums []int) bool {
+	left, right := 0, len(nums)-1
 
 	for left < right {
 		if nums[left] != nums[right] {
@@ -93,9 +90,9 @@ func IsPalindrome (nums []int) bool {
 	return true
 }
 
-func IsPalindromeLinkedList(linked_list *linkedList) bool  {
+func IsPalindromeLinkedList(linked_list *linkedList) bool {
 	linked_list_value_slice := make([]int, 0)
-	
+
 	curr := linked_list.head
 
 	for curr != nil {
@@ -106,3 +103,19 @@ func IsPalindromeLinkedList(linked_list *linkedList) bool  {
 	return IsPalindrome(linked_list_value_slice)
 }
 
+func (linked_list *linkedList) RemoveElements(val int) {
+	var curr, prev *linkedListNode
+	curr = linked_list.head
+
+	for curr != nil {
+		if curr.value == val {
+			linked_list.size -= 1
+			prev.next = curr.next
+		}
+		prev = curr
+		curr = curr.next
+	}
+
+
+
+}

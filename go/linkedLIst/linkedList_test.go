@@ -93,6 +93,34 @@ func TestIsPalindrome(t *testing.T)  {
 
 		})
 	}
+}
+
+func TestRemoveElements (t *testing.T) {
+	test_items := []struct{
+		id string
+		val int
+		linked_list, exp *linkedList
+	} {
+		{id: "1", linked_list: createLinkedListFromSlice([]int{1,2,6,3,4,5,6}), val: 6,	exp: createLinkedListFromSlice([]int{1, 2, 3, 4, 5})},
+		{id: "2", linked_list: createLinkedListFromSlice([]int{}), val: 1,	exp: createLinkedListFromSlice([]int{})},
+		{id: "3", linked_list: createLinkedListFromSlice([]int{7,7,7,7}), val: 7,	exp: createLinkedListFromSlice([]int{})},
 	}
+
+	for _, item := range test_items {
+		t.Run(item.id, func(t *testing.T) {
+			item.linked_list.RemoveElements(item.val)
+
+			if !reflect.DeepEqual(item.linked_list, item.exp) {
+				t.Errorf("exp: %#v, got: %#v", item.linked_list, item.exp)
+			}
+		})
+	}
+}
+
+
+
+
+
+
 
 
