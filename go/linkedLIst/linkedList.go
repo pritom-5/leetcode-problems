@@ -2,6 +2,7 @@ package linkedlist
 
 import "fmt"
 
+
 type linkedListNode struct {
 	value int
 	next  *linkedListNode
@@ -23,6 +24,7 @@ func (ll *linkedList) AddNode(val int) {
 	}
 
 	current := ll.head
+
 	for current.next != nil {
 		current = current.next
 	}
@@ -49,6 +51,37 @@ func createLinkedListFromSlice(values []int) *linkedList {
 	for _, val := range values {
 		linked_list.AddNode(val)
 	}
+	return linked_list
+}
+
+func CreateCyclicLinkedListFromSlice(values []int, pos int) *linkedList {
+	if len(values) == 0 {
+		return &linkedList{}
+	}
+
+	var cyclic_pos *linkedListNode
+
+	linked_list:= &linkedList{head: &linkedListNode{value: values[0], next: nil}, size: 1}
+	curr := linked_list.head
+
+	for i, val := range values {
+		if i == 0 {
+			continue
+		}
+
+		new_node := &linkedListNode{value: val, next: nil}
+
+		if (i == pos) {
+			cyclic_pos = new_node
+		}
+
+		curr.next = new_node
+		curr = curr.next
+		linked_list.size += 1
+	}
+
+	curr.next = cyclic_pos
+
 	return linked_list
 }
 
@@ -160,10 +193,39 @@ func (linked_list *linkedList) RemoveDuplicates () {
 }
 
 
+func (linked_list *linkedList) MiddleNode () int {
+	if (linked_list.head == nil || linked_list.head.next == nil) {
+		return linked_list.head.value
+	}
+	
+	var slow, fast *linkedListNode = linked_list.head, linked_list.head.next 
+
+	for (fast.next != nil && fast.next.next != nil){
+		slow = slow.next
+		fast = fast.next.next
+
+		fmt.Println(fast.value)
+	}
+
+	return slow.next.value
+}
 
 
+func (linked_list *linkedList) HasCycle () bool {
+	if ( linked_list.head == nil || linked_list.head.next == nil) {
+		return false
+	}
+	slow, fast := linked_list.head, linked_list.head.next
 
-
+	for (fast.next != nil && fast.next.next != nil ){
+		if slow == fast {
+			return true
+		}
+		slow = slow.next
+		fast = fast.next.next
+	}
+	return false
+}
 
 
 
