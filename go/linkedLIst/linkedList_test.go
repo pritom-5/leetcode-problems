@@ -118,6 +118,26 @@ func TestRemoveElements (t *testing.T) {
 }
 
 
+func TestRemoveDuplicates(t *testing.T)  {
+	testing_items := []struct{
+		id string
+		linked_list, exp *linkedList
+	} {
+		{id: "1", linked_list: createLinkedListFromSlice([]int{1, 1, 2}), exp: createLinkedListFromSlice([]int{1, 2})},
+		{id: "2", linked_list: createLinkedListFromSlice([]int{1,1,2,3,3}), exp: createLinkedListFromSlice([]int{1, 2, 3})},
+		{id: "3", linked_list: createLinkedListFromSlice([]int{1, 1, 1}), exp: createLinkedListFromSlice([]int{1})},
+	}
+
+	for _, item := range testing_items {
+		t.Run(item.id, func(t *testing.T) {
+			item.linked_list.RemoveDuplicates()
+			if !reflect.DeepEqual(item.linked_list, item.exp) {
+				t.Errorf("got: %#v, exp: %#v", item.linked_list, item.exp)
+			}
+		})
+	}
+	
+}
 
 
 

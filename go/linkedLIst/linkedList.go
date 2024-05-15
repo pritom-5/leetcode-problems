@@ -1,5 +1,7 @@
 package linkedlist
 
+import "fmt"
+
 type linkedListNode struct {
 	value int
 	next  *linkedListNode
@@ -104,18 +106,66 @@ func IsPalindromeLinkedList(linked_list *linkedList) bool {
 }
 
 func (linked_list *linkedList) RemoveElements(val int) {
-	var curr, prev *linkedListNode
-	curr = linked_list.head
+	curr := linked_list.head
 
-	for curr != nil {
-		if curr.value == val {
-			linked_list.size -= 1
-			prev.next = curr.next
-		}
-		prev = curr
-		curr = curr.next
+	if curr == nil {
+		return
 	}
 
 
+	for curr.next != nil {
+		if curr.next.value == val {
+			curr.next = curr.next.next
+			linked_list.size -= 1
+			continue
+		}
 
+		curr = curr.next
+	}
+
+	if curr.value == val {
+		linked_list.head = curr.next
+		linked_list.size -= 1
+	}
 }
+
+func (linked_list *linkedList) SliceFromLinkedList () []int {
+	slice := make([]int, 0)
+
+	curr := linked_list.head
+
+	for curr != nil {
+		slice = append(slice, curr.value)
+		curr = curr.next
+	}
+
+	return slice
+}
+
+func (linked_list *linkedList) RemoveDuplicates () {
+	curr := linked_list.head
+
+	if (curr == nil || curr.next == nil) {
+		return
+	}
+
+	for curr != nil {
+		if (curr.next != nil && curr.value == curr.next.value){
+			curr.next = curr.next.next
+			linked_list.size -= 1
+			continue
+		}
+		curr = curr.next
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
