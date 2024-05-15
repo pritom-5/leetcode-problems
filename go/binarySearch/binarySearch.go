@@ -30,3 +30,20 @@ func SearchInsert (nums []int, target int) int {
 // 0 3 1
 // 2 3 2
 // 2 2 
+
+// rest of the binary search problmes easy neetcode
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
