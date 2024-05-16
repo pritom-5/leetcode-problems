@@ -24,7 +24,7 @@ func TestAddNode(t *testing.T)  {
 func TestReverseLinkedList(t *testing.T)  {
 	linked_list_01 := createLinkedListFromSlice([]int{10, 20, 30})
 
-	linked_list_01.ReverseLinkedList()
+	linked_list_01.ReverseLinkedList02()
 
 	if linked_list_01.head.value != 30 {
 		t.Errorf("got: %d, exp: %d", linked_list_01.head.value, 30)
@@ -43,7 +43,7 @@ func TestMergeLinkedList(t *testing.T)  {
 
 	ll_3 := createLinkedListFromSlice([]int {1, 1, 2, 3, 4, 4})
 
-	merged_linked_list := mergeLinkedList(ll_1, ll_2)
+	merged_linked_list := mergeLinkedList02(ll_1, ll_2)
 
 	if !reflect.DeepEqual(ll_3, merged_linked_list) {
 		t.Errorf("merged_linked_list: %#v", merged_linked_list)
@@ -108,7 +108,7 @@ func TestRemoveElements (t *testing.T) {
 
 	for _, item := range test_items {
 		t.Run(item.id, func(t *testing.T) {
-			item.linked_list.RemoveElements(item.val)
+			item.linked_list.removeElements02(item.val)
 
 			if !reflect.DeepEqual(item.linked_list, item.exp) {
 				t.Errorf("exp: %#v, got: %#v", item.linked_list, item.exp)
@@ -130,7 +130,7 @@ func TestRemoveDuplicates(t *testing.T)  {
 
 	for _, item := range testing_items {
 		t.Run(item.id, func(t *testing.T) {
-			item.linked_list.RemoveDuplicates()
+			item.linked_list.removeDuplicates02()
 			if !reflect.DeepEqual(item.linked_list, item.exp) {
 				t.Errorf("got: %#v, exp: %#v", item.linked_list, item.exp)
 			}
@@ -151,7 +151,7 @@ func TestMiddleNode(t *testing.T)  {
 
 	for _, item := range testing_data {
 		t.Run(item.id, func(t *testing.T) {
-			got := item.linked_list.MiddleNode()
+			got := item.linked_list.middleNode()
 			if got != item.exp {
 				t.Errorf("got: %d, exp: %d", got, item.exp)
 			}
@@ -190,8 +190,8 @@ func TestCreateCyclicLinkedListFromSlice(t *testing.T)  {
 func TestHasCycle(t *testing.T)  {
 	cyclic_linked_list_1 := CreateCyclicLinkedListFromSlice([]int {3,2,0,-4}, 1)
 	cyclic_linked_list_2 := CreateCyclicLinkedListFromSlice([]int {1}, -1)
-	got_1 := cyclic_linked_list_1.HasCycle()
-	got_2 := cyclic_linked_list_2.HasCycle()
+	got_1 := cyclic_linked_list_1.hasCycle02()
+	got_2 := cyclic_linked_list_2.hasCycle02()
 
 	if got_1 != true {
 		t.Errorf("got: %t", got_1)

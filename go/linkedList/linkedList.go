@@ -1,36 +1,5 @@
 package linkedlist
 
-import "fmt"
-
-
-type linkedListNode struct {
-	value int
-	next  *linkedListNode
-}
-
-type linkedList struct {
-	head *linkedListNode
-	size int
-}
-
-func (ll *linkedList) AddNode(val int) {
-	ll.size += 1
-
-	new_node := &linkedListNode{value: val, next: nil}
-
-	if ll.head == nil {
-		ll.head = new_node
-		return
-	}
-
-	current := ll.head
-
-	for current.next != nil {
-		current = current.next
-	}
-
-	current.next = new_node
-}
 
 func (ll *linkedList) ReverseLinkedList() {
 	var prev, curr, next *linkedListNode
@@ -46,44 +15,6 @@ func (ll *linkedList) ReverseLinkedList() {
 	ll.head = prev
 }
 
-func createLinkedListFromSlice(values []int) *linkedList {
-	linked_list := &linkedList{}
-	for _, val := range values {
-		linked_list.AddNode(val)
-	}
-	return linked_list
-}
-
-func CreateCyclicLinkedListFromSlice(values []int, pos int) *linkedList {
-	if len(values) == 0 {
-		return &linkedList{}
-	}
-
-	var cyclic_pos *linkedListNode
-
-	linked_list:= &linkedList{head: &linkedListNode{value: values[0], next: nil}, size: 1}
-	curr := linked_list.head
-
-	for i, val := range values {
-		if i == 0 {
-			continue
-		}
-
-		new_node := &linkedListNode{value: val, next: nil}
-
-		if (i == pos) {
-			cyclic_pos = new_node
-		}
-
-		curr.next = new_node
-		curr = curr.next
-		linked_list.size += 1
-	}
-
-	curr.next = cyclic_pos
-
-	return linked_list
-}
 
 func mergeLinkedList(ll_1, ll_2 *linkedList) *linkedList {
 	var ll_1_node, ll_2_node *linkedListNode = ll_1.head, ll_2.head
@@ -138,7 +69,7 @@ func IsPalindromeLinkedList(linked_list *linkedList) bool {
 	return IsPalindrome(linked_list_value_slice)
 }
 
-func (linked_list *linkedList) RemoveElements(val int) {
+func (linked_list *linkedList) removeElements(val int) {
 	curr := linked_list.head
 
 	if curr == nil {
@@ -162,20 +93,8 @@ func (linked_list *linkedList) RemoveElements(val int) {
 	}
 }
 
-func (linked_list *linkedList) SliceFromLinkedList () []int {
-	slice := make([]int, 0)
 
-	curr := linked_list.head
-
-	for curr != nil {
-		slice = append(slice, curr.value)
-		curr = curr.next
-	}
-
-	return slice
-}
-
-func (linked_list *linkedList) RemoveDuplicates () {
+func (linked_list *linkedList) removeDuplicates () {
 	curr := linked_list.head
 
 	if (curr == nil || curr.next == nil) {
@@ -193,21 +112,19 @@ func (linked_list *linkedList) RemoveDuplicates () {
 }
 
 
-func (linked_list *linkedList) MiddleNode () int {
+func (linked_list *linkedList) middleNode () int {
 	if (linked_list.head == nil || linked_list.head.next == nil) {
 		return linked_list.head.value
 	}
 	
-	var slow, fast *linkedListNode = linked_list.head, linked_list.head.next 
+	var slow, fast *linkedListNode = linked_list.head, linked_list.head
 
-	for (fast.next != nil && fast.next.next != nil){
+	for (fast != nil && fast.next != nil){
 		slow = slow.next
 		fast = fast.next.next
-
-		fmt.Println(fast.value)
 	}
 
-	return slow.next.value
+	return slow.value
 }
 
 
