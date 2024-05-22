@@ -80,10 +80,9 @@ func invertTree (root *tree_node_t) *tree_node_t {
 	if root == nil {
 		return root
 	}
-
 	tmp := root.Left
 	root.Left = root.Right
 	root.Right = tmp
-	
+
 	return root
 }

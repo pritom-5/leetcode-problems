@@ -82,6 +82,8 @@ func TestIsSameTree (t *testing.T) {
 	tree1 := createTree1()
 	tree2 := createTree1()
 
+	
+
 	got := isSameTree(tree1.root, tree2.root)
 	if got != true {
 		t.Errorf("got: %t, exp: true", got)
@@ -92,15 +94,9 @@ func TestInvert (t *testing.T) {
 	tree1 := createTree3()
 	tree2 := createTree4()
 
-	root3 := invertTree(tree1.root)
+	inverted_tree_root := invertTree(tree1.root)
 
-	println("tree3: ")
-	root3.printTree()
-
-	println("tree2: ")
-	tree2.printTree()
-
-	if isSameTree(tree2.root, root3) == true {
+	if isSameTree(tree2.root, inverted_tree_root) != true {
 		t.Errorf("error invert")
 	}
 }
