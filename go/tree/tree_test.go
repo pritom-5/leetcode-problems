@@ -1,6 +1,8 @@
 package tree
 
-import "testing"
+import (
+	"testing"
+)
 
 func createTree1 () *tree_t {
 	tree := &tree_t{}
@@ -43,6 +45,56 @@ func createTree4() *tree_t {
 
 	return tree
 }
+
+func createTree5() *tree_t {
+	tree := &tree_t{}
+	tree.setRoot(3)
+	tree.root.insertLeft(4)
+	tree.root.insertRight(5)
+	tree.root.Left.insertLeft(1)
+	tree.root.Left.insertRight(2)
+
+	return tree
+}
+
+func createTree6() *tree_t {
+	tree := &tree_t{}
+	tree.setRoot(4)
+	tree.root.insertLeft(1)
+	tree.root.insertRight(2)
+
+	return tree
+}
+func createTree7() *tree_t {
+	tree := &tree_t{}
+	tree.setRoot(1)
+
+	return tree
+}
+func createTree8() *tree_t {
+	tree := &tree_t{}
+	tree.setRoot(0)
+
+	return tree
+}
+
+func createTree9() *tree_t {
+	tree := &tree_t{}
+	tree.setRoot(5)
+	tree.root.insertLeft(4)
+	tree.root.Left.insertLeft(11)
+	tree.root.Left.Left.insertLeft(7)
+	tree.root.Left.Left.insertRight(2)
+
+
+	tree.root.insertRight(8)
+	tree.root.Right.insertLeft(13)
+	tree.root.Right.insertRight(4)
+
+
+	return tree
+}
+
 
 func TestDiameter(t *testing.T)  {
 	tree_1 := createTree1()
@@ -101,7 +153,31 @@ func TestInvert (t *testing.T) {
 	}
 }
 
+func TestIsSubtree (t *testing.T) {
+	tree1 := createTree5()
+	tree2 := createTree6()
 
+	got := isSubtree(tree1.root, tree2.root)
 
+	if got != true {
+		t.Errorf("got: %t, exp: %t", got, true)
+	}
+
+	tree3 := createTree7()
+	tree4 := createTree8()
+
+	if got = isSubtree(tree3.root, tree4.root); got != false {
+		t.Errorf("got: %t, exp: %t", got, false)
+	}
+}
+
+func TestHasPath(t *testing.T) {
+	tree1 := createTree9()
+	got := hasPath(tree1.root, 22)
+	if got != true {
+		t.Errorf("got: %t, exp: %t", got, true)
+	}
+
+}
 
 

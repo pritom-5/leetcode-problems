@@ -1,6 +1,8 @@
 package tree
 
-import "math"
+import (
+	"math"
+)
 
 func (root *tree_node_t) diameter () int {
 	length := 0
@@ -85,4 +87,42 @@ func invertTree (root *tree_node_t) *tree_node_t {
 	root.Right = tmp
 
 	return root
+}
+
+
+func isSubtree (root, subtree *tree_node_t) bool {
+	if root == nil {
+		return false
+	}
+
+	return isEqual(root, subtree) || isSubtree(root.Left, subtree) || isSubtree(root.Right, subtree)
+
+}
+
+func isEqual (s, t *tree_node_t) bool {
+	if s == nil && t == nil {
+		return true
+	}
+	if s == nil || t == nil || s.Val != t.Val {
+		return false
+	}
+
+	return isEqual(s.Left, t.Left) && isEqual(s.Right, t.Right)
+}
+
+func hasPath(root *tree_node_t, targetSum int) bool {
+	if root == nil {
+		return false
+	}
+	if root.Left == nil && root.Right == nil && root.Val == targetSum {
+		return true
+	}
+
+	tmp := targetSum - root.Val
+
+	if hasPath(root.Left, tmp) || hasPath(root.Right, tmp) {
+		return true
+	}
+
+	return false
 }
