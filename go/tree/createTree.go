@@ -22,9 +22,13 @@ func (node *tree_node_t) insertRight (val int) {
 }
 
 func (tree *tree_t) printTree () {
+	tree.root.printTree()
+}
+
+func (root *tree_node_t) printTree () {
 	slice := make([]int, 0)
 	q := make([]*tree_node_t, 0)
-	q = append(q, tree.root)
+	q = append(q, root)
 
 	for len(q) > 0 {
 		curr := q[0]
@@ -42,6 +46,7 @@ func (tree *tree_t) printTree () {
 
 	}
 
-	fmt.Printf("slice: %#v", slice)
+	fmt.Printf("slice: %#v\n", slice)
+
 
 }

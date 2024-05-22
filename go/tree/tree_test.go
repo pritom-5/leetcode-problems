@@ -26,6 +26,24 @@ func createTree2() *tree_t {
 	return tree
 }
 
+
+func createTree3() *tree_t {
+	tree := &tree_t{}
+	tree.setRoot(2)
+	tree.root.insertLeft(1)
+	tree.root.insertRight(3)
+
+	return tree
+}
+func createTree4() *tree_t {
+	tree := &tree_t{}
+	tree.setRoot(2)
+	tree.root.insertLeft(3)
+	tree.root.insertRight(1)
+
+	return tree
+}
+
 func TestDiameter(t *testing.T)  {
 	tree_1 := createTree1()
 
@@ -57,12 +75,35 @@ func TestIsBalanced (t *testing.T) {
 	if got = tree_2.root.isBalanced(); got != false {
 		t.Errorf("got: %t, exp: false", got)
 	}
-
 }
 
 
+func TestIsSameTree (t *testing.T) {
+	tree1 := createTree1()
+	tree2 := createTree1()
 
+	got := isSameTree(tree1.root, tree2.root)
+	if got != true {
+		t.Errorf("got: %t, exp: true", got)
+	}
+}
 
+func TestInvert (t *testing.T) {
+	tree1 := createTree3()
+	tree2 := createTree4()
+
+	root3 := invertTree(tree1.root)
+
+	println("tree3: ")
+	root3.printTree()
+
+	println("tree2: ")
+	tree2.printTree()
+
+	if isSameTree(tree2.root, root3) == true {
+		t.Errorf("error invert")
+	}
+}
 
 
 

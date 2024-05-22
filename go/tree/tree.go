@@ -43,10 +43,7 @@ func dfsWalkHeight (node *tree_node_t) int {
 	left := dfsWalkHeight(node.Left)
 	right := dfsWalkHeight(node.Right)
 
-	return max(left, right) + 1
-}
-
-
+	return max(left, right) + 1 }
 func (root *tree_node_t) isBalanced () bool {
 	is_balanced := true
 	walkIsBalanced(root, &is_balanced)
@@ -68,3 +65,25 @@ func walkIsBalanced (node *tree_node_t, is_balanced *bool) int {
 }
 
 
+func isSameTree(p_node, q_node *tree_node_t) bool {
+	if p_node == nil && q_node == nil {
+		return true
+	}
+	if p_node == nil || q_node == nil || p_node.Val != q_node.Val {
+		return false
+	}
+
+	return isSameTree(p_node.Left, q_node.Left) && isSameTree(p_node.Right, q_node.Right)
+}
+
+func invertTree (root *tree_node_t) *tree_node_t {
+	if root == nil {
+		return root
+	}
+
+	tmp := root.Left
+	root.Left = root.Right
+	root.Right = tmp
+	
+	return root
+}
