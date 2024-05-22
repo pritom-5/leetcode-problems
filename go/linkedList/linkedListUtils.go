@@ -9,7 +9,7 @@ func createLinkedListFromSlice(values []int) *linkedList {
 }
 
 
-func CreateCyclicLinkedListFromSlice(values []int, pos int) *linkedList {
+func createCyclicLinkedListFromSlice(values []int, pos int) *linkedList {
 	if len(values) == 0 {
 		return &linkedList{}
 	}
@@ -41,7 +41,7 @@ func CreateCyclicLinkedListFromSlice(values []int, pos int) *linkedList {
 }
 
 
-func (linked_list *linkedList) SliceFromLinkedList () []int {
+func (linked_list *linkedList) sliceFromLinkedList () []int {
 	slice := make([]int, 0)
 
 	curr := linked_list.head

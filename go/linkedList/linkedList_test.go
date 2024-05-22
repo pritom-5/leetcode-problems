@@ -162,7 +162,7 @@ func TestMiddleNode(t *testing.T)  {
 }
 
 func TestCreateCyclicLinkedListFromSlice(t *testing.T)  {
-	cyclic_linked_list := CreateCyclicLinkedListFromSlice([]int{3, 2, 0, -4}, 1)
+	cyclic_linked_list := createCyclicLinkedListFromSlice([]int{3, 2, 0, -4}, 1)
 
 	one_got := cyclic_linked_list.head.value 
 	two_got := cyclic_linked_list.head.next.value 
@@ -188,8 +188,8 @@ func TestCreateCyclicLinkedListFromSlice(t *testing.T)  {
 }
 
 func TestHasCycle(t *testing.T)  {
-	cyclic_linked_list_1 := CreateCyclicLinkedListFromSlice([]int {3,2,0,-4}, 1)
-	cyclic_linked_list_2 := CreateCyclicLinkedListFromSlice([]int {1}, -1)
+	cyclic_linked_list_1 := createCyclicLinkedListFromSlice([]int {3,2,0,-4}, 1)
+	cyclic_linked_list_2 := createCyclicLinkedListFromSlice([]int {1}, -1)
 	got_1 := cyclic_linked_list_1.hasCycle02()
 	got_2 := cyclic_linked_list_2.hasCycle02()
 
