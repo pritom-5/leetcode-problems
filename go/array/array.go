@@ -1,7 +1,5 @@
 // ?????
 // what is the difference between []int{} and make([]int, 0) and var name []int
-// difference between byte and rune
-// map[string]struct{} i dont want to store any value in map
 
 package array
 
