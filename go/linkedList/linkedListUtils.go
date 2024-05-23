@@ -8,7 +8,6 @@ func createLinkedListFromSlice(values []int) *linkedList {
 	return linked_list
 }
 
-
 func createCyclicLinkedListFromSlice(values []int, pos int) *linkedList {
 	if len(values) == 0 {
 		return &linkedList{}
@@ -16,7 +15,7 @@ func createCyclicLinkedListFromSlice(values []int, pos int) *linkedList {
 
 	var cyclic_pos *linkedListNode
 
-	linked_list:= &linkedList{head: &linkedListNode{value: values[0], next: nil}, size: 1}
+	linked_list := &linkedList{head: &linkedListNode{value: values[0], next: nil}, size: 1}
 	curr := linked_list.head
 
 	for i, val := range values {
@@ -26,7 +25,7 @@ func createCyclicLinkedListFromSlice(values []int, pos int) *linkedList {
 
 		new_node := &linkedListNode{value: val, next: nil}
 
-		if (i == pos) {
+		if i == pos {
 			cyclic_pos = new_node
 		}
 
@@ -40,8 +39,7 @@ func createCyclicLinkedListFromSlice(values []int, pos int) *linkedList {
 	return linked_list
 }
 
-
-func (linked_list *linkedList) sliceFromLinkedList () []int {
+func (linked_list *linkedList) sliceFromLinkedList() []int {
 	slice := make([]int, 0)
 
 	curr := linked_list.head

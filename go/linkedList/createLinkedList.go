@@ -28,5 +28,3 @@ func (ll *linkedList) AddNode(val int) {
 
 	current.next = new_node
 }
-
-

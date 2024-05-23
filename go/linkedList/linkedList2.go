@@ -1,6 +1,6 @@
 package linkedlist
 
-func (linked_list *linkedList) ReverseLinkedList02 () {
+func (linked_list *linkedList) ReverseLinkedList02() {
 	var prev, curr, next *linkedListNode
 
 	curr = linked_list.head
@@ -18,7 +18,7 @@ func mergeLinkedList02(linked_list_01, linked_list_02 *linkedList) *linkedList {
 	merged_linked_list := &linkedList{}
 	var node_01, node_02 *linkedListNode = linked_list_01.head, linked_list_02.head
 
-	addNodeToMergedLinkedList := func (value int) {
+	addNodeToMergedLinkedList := func(value int) {
 		new_node := &linkedListNode{value: value, next: nil}
 		merged_linked_list.size += 1
 
@@ -27,9 +27,9 @@ func mergeLinkedList02(linked_list_01, linked_list_02 *linkedList) *linkedList {
 		if merged_linked_list.head == nil {
 			merged_linked_list.head = new_node
 			return
-		} 
+		}
 
-		for (curr != nil && curr.next != nil) {
+		for curr != nil && curr.next != nil {
 			curr = curr.next
 		}
 
@@ -37,7 +37,7 @@ func mergeLinkedList02(linked_list_01, linked_list_02 *linkedList) *linkedList {
 
 	}
 
-	for (node_01 != nil && node_02 != nil) {
+	for node_01 != nil && node_02 != nil {
 		if node_01.value <= node_02.value {
 			addNodeToMergedLinkedList(node_01.value)
 			node_01 = node_01.next
@@ -48,20 +48,19 @@ func mergeLinkedList02(linked_list_01, linked_list_02 *linkedList) *linkedList {
 	}
 
 	for node_01 != nil {
-			addNodeToMergedLinkedList(node_01.value)
-			node_01 = node_01.next
+		addNodeToMergedLinkedList(node_01.value)
+		node_01 = node_01.next
 	}
 
 	for node_02 != nil {
-			addNodeToMergedLinkedList(node_02.value)
-			node_02 = node_02.next
+		addNodeToMergedLinkedList(node_02.value)
+		node_02 = node_02.next
 	}
 
 	return merged_linked_list
 }
 
-
-func (linked_list *linkedList) hasCycle02 () bool  {
+func (linked_list *linkedList) hasCycle02() bool {
 	var slow, fast *linkedListNode = linked_list.head, linked_list.head.next
 
 	for fast != nil && fast.next != nil {
@@ -74,7 +73,7 @@ func (linked_list *linkedList) hasCycle02 () bool  {
 	return false
 }
 
-func (linked_list *linkedList) middleNode02 () int {
+func (linked_list *linkedList) middleNode02() int {
 	var fast, slow *linkedListNode = linked_list.head, linked_list.head
 
 	for fast != nil && fast.next != nil {
@@ -85,7 +84,7 @@ func (linked_list *linkedList) middleNode02 () int {
 	return slow.value
 }
 
-func (linked_list *linkedList) removeDuplicates02 () {
+func (linked_list *linkedList) removeDuplicates02() {
 	curr := linked_list.head
 
 	for curr != nil && curr.next != nil {
@@ -98,9 +97,9 @@ func (linked_list *linkedList) removeDuplicates02 () {
 	}
 }
 
-func (linked_list *linkedList) removeElements02 (value int) {
+func (linked_list *linkedList) removeElements02(value int) {
 	curr := linked_list.head
-	
+
 	if curr == nil {
 		return
 	}
@@ -119,10 +118,3 @@ func (linked_list *linkedList) removeElements02 (value int) {
 		linked_list.size -= 1
 	}
 }
-
-
-
-
-
-
-

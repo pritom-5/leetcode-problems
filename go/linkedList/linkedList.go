@@ -1,6 +1,5 @@
 package linkedlist
 
-
 func (ll *linkedList) ReverseLinkedList() {
 	var prev, curr, next *linkedListNode
 	curr = ll.head
@@ -14,7 +13,6 @@ func (ll *linkedList) ReverseLinkedList() {
 
 	ll.head = prev
 }
-
 
 func mergeLinkedList(ll_1, ll_2 *linkedList) *linkedList {
 	var ll_1_node, ll_2_node *linkedListNode = ll_1.head, ll_2.head
@@ -76,7 +74,6 @@ func (linked_list *linkedList) removeElements(val int) {
 		return
 	}
 
-
 	for curr.next != nil {
 		if curr.next.value == val {
 			curr.next = curr.next.next
@@ -93,16 +90,15 @@ func (linked_list *linkedList) removeElements(val int) {
 	}
 }
 
-
-func (linked_list *linkedList) removeDuplicates () {
+func (linked_list *linkedList) removeDuplicates() {
 	curr := linked_list.head
 
-	if (curr == nil || curr.next == nil) {
+	if curr == nil || curr.next == nil {
 		return
 	}
 
 	for curr != nil {
-		if (curr.next != nil && curr.value == curr.next.value){
+		if curr.next != nil && curr.value == curr.next.value {
 			curr.next = curr.next.next
 			linked_list.size -= 1
 			continue
@@ -111,15 +107,14 @@ func (linked_list *linkedList) removeDuplicates () {
 	}
 }
 
-
-func (linked_list *linkedList) middleNode () int {
-	if (linked_list.head == nil || linked_list.head.next == nil) {
+func (linked_list *linkedList) middleNode() int {
+	if linked_list.head == nil || linked_list.head.next == nil {
 		return linked_list.head.value
 	}
-	
+
 	var slow, fast *linkedListNode = linked_list.head, linked_list.head
 
-	for (fast != nil && fast.next != nil){
+	for fast != nil && fast.next != nil {
 		slow = slow.next
 		fast = fast.next.next
 	}
@@ -127,14 +122,13 @@ func (linked_list *linkedList) middleNode () int {
 	return slow.value
 }
 
-
-func (linked_list *linkedList) HasCycle () bool {
-	if ( linked_list.head == nil || linked_list.head.next == nil) {
+func (linked_list *linkedList) HasCycle() bool {
+	if linked_list.head == nil || linked_list.head.next == nil {
 		return false
 	}
 	slow, fast := linked_list.head, linked_list.head.next
 
-	for (fast.next != nil && fast.next.next != nil ){
+	for fast.next != nil && fast.next.next != nil {
 		if slow == fast {
 			return true
 		}
@@ -143,8 +137,3 @@ func (linked_list *linkedList) HasCycle () bool {
 	}
 	return false
 }
-
-
-
-
-

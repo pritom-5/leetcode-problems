@@ -5,10 +5,8 @@ import (
 	"testing"
 )
 
-
-func TestAddNode(t *testing.T)  {
+func TestAddNode(t *testing.T) {
 	linked_list := createLinkedListFromSlice([]int{10, 20})
-
 
 	value_1 := linked_list.head.value
 	value_2 := linked_list.head.next.value
@@ -21,7 +19,7 @@ func TestAddNode(t *testing.T)  {
 	}
 }
 
-func TestReverseLinkedList(t *testing.T)  {
+func TestReverseLinkedList(t *testing.T) {
 	linked_list_01 := createLinkedListFromSlice([]int{10, 20, 30})
 
 	linked_list_01.ReverseLinkedList02()
@@ -37,11 +35,11 @@ func TestReverseLinkedList(t *testing.T)  {
 	}
 }
 
-func TestMergeLinkedList(t *testing.T)  {
-	ll_1 := createLinkedListFromSlice([]int {1, 2, 4})
-	ll_2 := createLinkedListFromSlice([]int {1, 3, 4})
+func TestMergeLinkedList(t *testing.T) {
+	ll_1 := createLinkedListFromSlice([]int{1, 2, 4})
+	ll_2 := createLinkedListFromSlice([]int{1, 3, 4})
 
-	ll_3 := createLinkedListFromSlice([]int {1, 1, 2, 3, 4, 4})
+	ll_3 := createLinkedListFromSlice([]int{1, 1, 2, 3, 4, 4})
 
 	merged_linked_list := mergeLinkedList02(ll_1, ll_2)
 
@@ -50,15 +48,15 @@ func TestMergeLinkedList(t *testing.T)  {
 	}
 }
 
-func TestIsPalindrome(t *testing.T)  {
-	test_data_items := []struct{
-		id string
+func TestIsPalindrome(t *testing.T) {
+	test_data_items := []struct {
+		id   string
 		nums []int
-		exp bool
+		exp  bool
 	}{
 		{id: "1", nums: []int{1, 2, 3, 2, 1}, exp: true},
 		{id: "2", nums: []int{1, 2, 2, 1}, exp: true},
-		{id: "3", nums: []int{1, 3,  2, 1}, exp: false},
+		{id: "3", nums: []int{1, 3, 2, 1}, exp: false},
 		{id: "4", nums: []int{}, exp: true},
 	}
 
@@ -71,17 +69,17 @@ func TestIsPalindrome(t *testing.T)  {
 
 		})
 	}
-	
+
 }
-	func TestIsPalindromeLinkedList(t *testing.T)  {
-		test_items := []struct{
-			id string
-			linked_list *linkedList
-			exp bool
-		}{
-			{id: "1", linked_list: createLinkedListFromSlice([]int{1, 2, 2, 1}), exp: true},
-			{id: "2", linked_list: createLinkedListFromSlice([]int{1, 2}), exp: false},
-		}
+func TestIsPalindromeLinkedList(t *testing.T) {
+	test_items := []struct {
+		id          string
+		linked_list *linkedList
+		exp         bool
+	}{
+		{id: "1", linked_list: createLinkedListFromSlice([]int{1, 2, 2, 1}), exp: true},
+		{id: "2", linked_list: createLinkedListFromSlice([]int{1, 2}), exp: false},
+	}
 
 	for _, item := range test_items {
 		t.Run(item.id, func(t *testing.T) {
@@ -95,15 +93,15 @@ func TestIsPalindrome(t *testing.T)  {
 	}
 }
 
-func TestRemoveElements (t *testing.T) {
-	test_items := []struct{
-		id string
-		val int
+func TestRemoveElements(t *testing.T) {
+	test_items := []struct {
+		id               string
+		val              int
 		linked_list, exp *linkedList
-	} {
-		{id: "1", linked_list: createLinkedListFromSlice([]int{1,2,6,3,4,5,6}), val: 6,	exp: createLinkedListFromSlice([]int{1, 2, 3, 4, 5})},
-		{id: "2", linked_list: createLinkedListFromSlice([]int{}), val: 1,	exp: createLinkedListFromSlice([]int{})},
-		{id: "3", linked_list: createLinkedListFromSlice([]int{7,7,7,7}), val: 7,	exp: createLinkedListFromSlice([]int{})},
+	}{
+		{id: "1", linked_list: createLinkedListFromSlice([]int{1, 2, 6, 3, 4, 5, 6}), val: 6, exp: createLinkedListFromSlice([]int{1, 2, 3, 4, 5})},
+		{id: "2", linked_list: createLinkedListFromSlice([]int{}), val: 1, exp: createLinkedListFromSlice([]int{})},
+		{id: "3", linked_list: createLinkedListFromSlice([]int{7, 7, 7, 7}), val: 7, exp: createLinkedListFromSlice([]int{})},
 	}
 
 	for _, item := range test_items {
@@ -117,14 +115,13 @@ func TestRemoveElements (t *testing.T) {
 	}
 }
 
-
-func TestRemoveDuplicates(t *testing.T)  {
-	testing_items := []struct{
-		id string
+func TestRemoveDuplicates(t *testing.T) {
+	testing_items := []struct {
+		id               string
 		linked_list, exp *linkedList
-	} {
+	}{
 		{id: "1", linked_list: createLinkedListFromSlice([]int{1, 1, 2}), exp: createLinkedListFromSlice([]int{1, 2})},
-		{id: "2", linked_list: createLinkedListFromSlice([]int{1,1,2,3,3}), exp: createLinkedListFromSlice([]int{1, 2, 3})},
+		{id: "2", linked_list: createLinkedListFromSlice([]int{1, 1, 2, 3, 3}), exp: createLinkedListFromSlice([]int{1, 2, 3})},
 		{id: "3", linked_list: createLinkedListFromSlice([]int{1, 1, 1}), exp: createLinkedListFromSlice([]int{1})},
 	}
 
@@ -138,15 +135,15 @@ func TestRemoveDuplicates(t *testing.T)  {
 	}
 }
 
-func TestMiddleNode(t *testing.T)  {
+func TestMiddleNode(t *testing.T) {
 	testing_data := []struct {
-		id string
+		id          string
 		linked_list *linkedList
-		exp int
-	} {
-		{id: "1", linked_list: createLinkedListFromSlice([]int {1, 2, 3, 4, 5}), exp: 3},
-		{id: "2", linked_list: createLinkedListFromSlice([]int {1, 2, 3, 4, 5, 6}), exp: 4},
-		{id: "3", linked_list: createLinkedListFromSlice([]int {1}), exp: 1},
+		exp         int
+	}{
+		{id: "1", linked_list: createLinkedListFromSlice([]int{1, 2, 3, 4, 5}), exp: 3},
+		{id: "2", linked_list: createLinkedListFromSlice([]int{1, 2, 3, 4, 5, 6}), exp: 4},
+		{id: "3", linked_list: createLinkedListFromSlice([]int{1}), exp: 1},
 	}
 
 	for _, item := range testing_data {
@@ -158,38 +155,38 @@ func TestMiddleNode(t *testing.T)  {
 
 		})
 	}
-	
+
 }
 
-func TestCreateCyclicLinkedListFromSlice(t *testing.T)  {
+func TestCreateCyclicLinkedListFromSlice(t *testing.T) {
 	cyclic_linked_list := createCyclicLinkedListFromSlice([]int{3, 2, 0, -4}, 1)
 
-	one_got := cyclic_linked_list.head.value 
-	two_got := cyclic_linked_list.head.next.value 
-	three_got := cyclic_linked_list.head.next.next.value 
+	one_got := cyclic_linked_list.head.value
+	two_got := cyclic_linked_list.head.next.value
+	three_got := cyclic_linked_list.head.next.next.value
 	four_got := cyclic_linked_list.head.next.next.next.value
 	five_got := cyclic_linked_list.head.next.next.next.next.value
 
-	if (one_got != 3) {
+	if one_got != 3 {
 		t.Errorf("one_got: %d", one_got)
 	}
-	if (two_got != 2) {
+	if two_got != 2 {
 		t.Errorf("two_got: %d", two_got)
 	}
-	if (three_got != 0) {
+	if three_got != 0 {
 		t.Errorf("three_got: %d", three_got)
 	}
-	if (four_got != -4) {
+	if four_got != -4 {
 		t.Errorf("four_got: %d", four_got)
 	}
-	if (five_got != 2) {
+	if five_got != 2 {
 		t.Errorf("five_got: %d", five_got)
 	}
 }
 
-func TestHasCycle(t *testing.T)  {
-	cyclic_linked_list_1 := createCyclicLinkedListFromSlice([]int {3,2,0,-4}, 1)
-	cyclic_linked_list_2 := createCyclicLinkedListFromSlice([]int {1}, -1)
+func TestHasCycle(t *testing.T) {
+	cyclic_linked_list_1 := createCyclicLinkedListFromSlice([]int{3, 2, 0, -4}, 1)
+	cyclic_linked_list_2 := createCyclicLinkedListFromSlice([]int{1}, -1)
 	got_1 := cyclic_linked_list_1.hasCycle02()
 	got_2 := cyclic_linked_list_2.hasCycle02()
 
@@ -199,8 +196,5 @@ func TestHasCycle(t *testing.T)  {
 	if got_2 != false {
 		t.Errorf("got: %t", got_2)
 	}
-	
+
 }
-
-
-

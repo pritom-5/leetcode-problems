@@ -432,71 +432,58 @@ func FindDisappearedNumbers(nums []int) []int {
 	return output_arr
 }
 
-func letterMap(text string) map[rune]int {
-	letter_map := make(map[rune]int)
-
-	for _, letter := range text {
-		_, ok := letter_map[letter]
-		if ok {
-			letter_map[letter] += 1
+func letterMap(text string) map[byte]int {
+	new_map := make(map[byte]int)
+	text_slice := []byte(text)
+	for _, ch := range text_slice {
+		if _, ok := new_map[ch]; ok {
+			new_map[ch] += 1
 		} else {
-			letter_map[letter] = 1
+			new_map[ch] = 1
 		}
 	}
-	return letter_map
+	return new_map
 }
 
 func NosBalloons(text string) int {
-	text_letter_map := letterMap(text)
-	word_balloon_letter_map := letterMap("balloon")
+	text_ch_map, balloon_ch_map := letterMap(text), letterMap("balloon") 
+	min_nos := math.MaxInt16
 
-	max_nos_balloons := 100_000
-
-	for k, v := range word_balloon_letter_map {
-		text_letter_value := text_letter_map[k]
-		nos_letter := math.Floor(float64(text_letter_value) / float64(v))
-
-		if nos_letter < float64(max_nos_balloons) {
-			max_nos_balloons = int(nos_letter)
+	for _, ch := range []byte(text) {
+		if nos_ch, ok := balloon_ch_map[ch]; ok {
+			min_nos = min(min_nos, text_ch_map[ch] / nos_ch)
 		}
-
 	}
-	return max_nos_balloons
+	return min_nos
+
 }
 
 func WordPattern(pattern, s string) bool {
-	pattern_s_map := make(map[string]string)
-	s_pattern_map := make(map[string]string)
+	patterns := strings.Split(pattern, "")
+	words := strings.Split(s, " ")
 
-	pattern_letters := strings.Split(pattern, "")
-	s_words := strings.Split(s, " ")
+	pattern_to_word := make(map[string]string)
+	word_to_pattern := make(map[string]string)
 
-	if len(pattern_letters) != len(s_words) {
-		return false
-	}
+	if len(patterns) != len(words) {return false}
 
-	for i, pattern_letter := range pattern_letters {
-		curr_s_word := s_words[i]
+	for i, curr_pattern := range patterns {
+		curr_word := words[i]
 
-		item, ok := pattern_s_map[pattern_letter]
-		if ok {
-			if item != curr_s_word {
+		if found_word, ok := pattern_to_word[curr_pattern]; ok {
+			if found_word != curr_word {
 				return false
 			}
-		} else {
-			pattern_s_map[pattern_letter] = curr_s_word
 		}
+			pattern_to_word[curr_pattern] = curr_word
 
-		item, ok = s_pattern_map[curr_s_word]
-		if ok {
-			if item != pattern_letter {
+		if found_pattern, ok := word_to_pattern[curr_word]; ok {
+			if found_pattern != curr_pattern {
 				return false
 			}
-		} else {
-			s_pattern_map[curr_s_word] = pattern_letter
 		}
+			word_to_pattern[curr_word] = curr_pattern
 	}
-
 	return true
 }
 
