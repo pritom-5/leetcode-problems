@@ -1,34 +1,45 @@
 package binarysearch
 
-import "fmt"
+import (
+	"slices"
+)
 
-// todo fix
 func SearchInsert(nums []int, target int) int {
-	left, right := 0, len(nums)-1
+	left, right := 0, len(nums) - 1
 
 	for left <= right {
-		middle := (left + right) / 2
-		middle_num := nums[middle]
-
-		if middle_num == target {
-			return middle
+		mid := (left + right) / 2
+		curr_num := nums[mid] 
+		if curr_num == target {
+			return mid
 		}
-		if target > middle {
-			left = middle + 1
+		if target > curr_num {
+			left = mid + 1
 		} else {
-			right = middle - 1
+			right = mid - 1 
 		}
-
-		fmt.Printf("left: %d, right: %d, middle: %d\n", left, right, middle)
 	}
-
 	return left
 }
 
-// 1,3,5,6
-//
-// 0 3 1
-// 2 3 2
-// 2 2
+func squaresOfSortedArray(nums []int) []int {
+	new_nums := make([]int, 0)
+	left, right, i := 0, len(nums) - 1, 0
 
-// rest of the binary search problmes easy neetcode
+	for left <= right {
+		left_sq := nums[left] * nums[left]
+		right_sq := nums[right] * nums[right]
+		if left_sq > right_sq {
+			new_nums = append(new_nums, left_sq)
+			left += 1
+		} else {
+			new_nums = append(new_nums, right_sq)
+			right -= 1
+		}
+		i += 1
+	}
+	slices.Reverse(new_nums)
+	return new_nums
+}
+
+
