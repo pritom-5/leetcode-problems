@@ -95,7 +95,26 @@ func TestSuccessfulPairs (t *testing.T) {
 	}
 }
 
+func TestSearchMatrix (t *testing.T) {
+	testing_item := []struct {
+		id string
+		matrix [][]int
+		target int
+		exp bool
+	} {
+		{id: "1", matrix: [][]int {{1, 3, 5, 7}, {10, 11, 16, 20}}, target: 3, exp: true,},
+		{id: "1", matrix: [][]int {{1, 3, 5, 7}, {10, 11, 16, 20}}, target: 13, exp: false,},
+	}
 
+	for _, item := range testing_item {
+		t.Run(item.id, func(t *testing.T) {
+			got := searchMatrix(item.matrix, item.target)
+			if got != item.exp {
+				t.Errorf("got: %t, exp: %t", got, item.exp)
+			}
+		})
+	}
+}
 
 
 
