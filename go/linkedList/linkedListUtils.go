@@ -51,3 +51,21 @@ func (linked_list *linkedList) sliceFromLinkedList() []int {
 
 	return slice
 }
+
+func (head *linkedListNode) sliceFromLinkedList() []int {
+	s := make([]int, 0)
+	if head == nil {
+		return s
+	}
+
+	for head != nil {
+		s = append(s, head.value)
+		head = head.next
+	}
+
+
+	return s
+}
+
+
+
