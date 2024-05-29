@@ -120,9 +120,6 @@ func successfulPairs(spells, potions []int, success int) []int {
 }
 
 // *********************************************** 
-// func searchMatrix(matrix [][]int, target int) bool  {
-// 	return true
-// }
 
 
 
