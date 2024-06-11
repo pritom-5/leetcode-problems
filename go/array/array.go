@@ -517,3 +517,31 @@ func FindDiffTwoArray(nums1, nums2 []int) [2][]int {
 	return [2][]int{nums_1_missing_slice, nums_2_missing_slice}
 
 }
+
+func isMonotonic(nums []int) bool {
+	if len(nums) <= 1 {
+		return false
+	}
+	l, r := 0, 1
+	is_increasing := (nums[len(nums) - 1] - nums[0]) > 0
+
+	for r < len(nums) {
+		diff := nums[r] - nums[l]
+		tmp := diff > 0
+
+		if tmp == is_increasing || diff == 0 {
+			r += 1
+			l += 1
+			continue
+		}
+		return false
+
+	}
+
+	return true
+}
+
+
+
+
+

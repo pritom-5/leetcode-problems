@@ -454,3 +454,26 @@ func TestFindDiffTwoArray(t *testing.T) {
 		})
 	}
 }
+
+func TestIsMonotonic(t *testing.T) {
+	test_items := []struct {
+		id string
+		nums []int
+		exp bool
+	} {
+		{id: "01", nums: []int {1, 2, 2, 3}, exp: true},
+		{id: "02", nums: []int {6, 5, 5, 4}, exp: true},
+		{id: "03", nums: []int {1, 3, 2}, exp: false},
+	}
+
+	for _, item := range test_items {
+		t.Run(item.id, func(t *testing.T) {
+			got := isMonotonic(item.nums)
+
+			if got != item.exp {
+				t.Errorf("got: %t, exp: %t", got, item.exp)
+			}
+		})
+
+	}
+}
