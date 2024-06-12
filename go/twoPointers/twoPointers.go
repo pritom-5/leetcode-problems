@@ -16,7 +16,6 @@ func GetCleanString(s string) string {
 	for start := 0; start < len(s); start++ {
 		letter := rune(s[start])
 
-		println(letter)
 
 		if letter >= 48 && letter <= 57 {
 			clean_string += strconv.Itoa(int(letter))
@@ -30,7 +29,6 @@ func GetCleanString(s string) string {
 		}
 	}
 
-	println(clean_string)
 
 	return clean_string
 }
@@ -79,7 +77,6 @@ func IsPalindrome_2(s string) bool {
 			return false
 		}
 
-		// println(left, right, left_letter, right_letter)
 		left += 1
 		right -= 1
 	}

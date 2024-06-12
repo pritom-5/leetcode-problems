@@ -4,8 +4,10 @@
 package array
 
 import (
+	"fmt"
 	"math"
 	"slices"
+	"strconv"
 	"strings"
 )
 
@@ -540,6 +542,145 @@ func isMonotonic(nums []int) bool {
 
 	return true
 }
+
+/** ------------------------------------*/
+
+type num_string string
+
+func (n num_string) isRepeated () bool {
+	n_bytes := []byte(n)
+
+	prev := n_bytes[0]
+
+	for _, ch := range n_bytes {
+		if prev != ch {
+			return false
+		}
+		prev = ch
+	}
+	return true
+}
+
+func (n num_string) getMax (curr num_string) num_string {
+	converted_n, _ := strconv.Atoi(string(n)) 
+	converted_curr, _ := strconv.Atoi(string(curr)) 
+	if converted_n > converted_curr {
+		return n
+	}
+	return curr
+}
+
+func largestGoodInteger(num string) string {
+	l, r := 0, 3
+	var max_value num_string = ""
+
+	for r < len(num) {
+		sub := num_string(num[l:r])
+
+		if sub.isRepeated() {
+			if max_value == "" {
+				max_value = sub
+			} else {
+				max_value = sub.getMax(max_value)
+				fmt.Printf("%s\n", sub)
+			}
+		}
+		l += 1
+		r += 1
+	}
+	return string(max_value)
+
+}
+
+
+//-------------------------------------------------
+type intStringType string
+
+func (a intStringType) nosZeroes () int {
+	count := 0
+	for _, ch := range []byte(a) {
+		if ch == 0x30 {
+			count += 1
+		}
+	}
+	return count
+}
+func (a intStringType) nosOnes () int {
+	count := 0
+	for _, ch := range []byte(a) {
+		if ch == 0x31 {
+			count += 1
+		}
+	}
+	return count
+}
+
+func maxScore(s string) int {
+	m, max_count := 1, 0
+
+	for m < len(s) {
+		l := s[:m]
+		r := s[m:]
+
+		
+
+		nos_zeroes := intStringType(l).nosZeroes()
+		nos_ones := intStringType(r).nosOnes()
+
+		max_count = max(max_count, nos_ones + nos_zeroes)
+
+		m += 1
+	}
+
+	// change
+	return max_count
+}
+
+
+// --------------------------------------
+
+func pathCrossed (path string) bool {
+	visited := map[string]struct{} {
+		"0-0": {},
+	}
+
+
+	direction := map[byte]struct{v int; h int} {
+		'N': {v: 1, h: 0},
+		'S': {v: -1, h: 0},
+		'E': {v: 0, h: 1},
+		'W': {v: 0, h: -1},
+	}
+
+	current := struct{x, y int} {
+		x: 0,
+		y: 0,
+	}
+
+	for _, node := range []byte(path) {
+		current.x += direction[node].h
+		current.y += direction[node].v
+
+		node_str := strconv.Itoa(current.x) + "-" + strconv.Itoa(current.y)
+
+		println(string(node), node_str)
+		fmt.Printf("map: %#v\n", visited)
+
+		if _, ok := visited[node_str]; ok {
+			return true
+		}
+
+		visited[node_str] = struct{}{}
+	}
+
+	return false
+}
+
+
+
+
+
+
 
 
 

@@ -477,3 +477,63 @@ func TestIsMonotonic(t *testing.T) {
 
 	}
 }
+
+
+func TestLargestGoodInteger(t *testing.T) {
+	test_data := []struct {
+		id string 
+		num, exp string
+	} {
+		{id: "1", num: "6777133339", exp: "777"},
+		{id: "2", num: "2300019", exp: "000"},
+		{id: "3", num: "42352338", exp: ""},
+	}
+
+	for _, item := range test_data {
+		t.Run(item.id, func(t *testing.T) {
+			got := largestGoodInteger(item.num)
+			if got != item.exp {
+				t.Errorf("got: %s, exp: %s", got, item.exp)
+			}
+		})
+	}
+}
+
+func TestMaxScore(t *testing.T) {
+	test_data := []struct {
+		id, num string 
+		exp int
+	} {
+		{id: "1", num: "011101", exp: 5},
+	}
+
+	for _, item := range test_data {
+		t.Run(item.id, func(t *testing.T) {
+			got := maxScore(item.num)
+			if got != item.exp {
+				t.Errorf("got: %d, exp: %d", got, item.exp)
+			}
+		})
+	}
+}
+
+
+
+func TestPathCrossed(t *testing.T) {
+	test_data := []struct {
+		id, path string 
+		exp bool
+	} {
+		// {id: "1", path: "NES", exp: false},
+		{id: "2", path: "NESWW", exp: true},
+	}
+
+	for _, item := range test_data {
+		t.Run(item.id, func(t *testing.T) {
+			got := pathCrossed(item.path)
+			if got != item.exp {
+				t.Errorf("got: %t, exp: %t", got, item.exp)
+			}
+		})
+	}
+}
