@@ -54,6 +54,26 @@ func ValidAnagram(s, t string) bool {
 
 }
 
+func validAnagram_2 (s, t string) bool {
+	if len(s) != len(t) {return false}
+
+	var letter_map [26]byte
+
+	s_arr, t_arr := []byte(s), []byte(t)
+
+	for i, k := range s_arr {
+		letter_map[k - byte('a')] += 1
+		letter_map[t_arr[i] - byte('a')] -= 1
+	}
+
+	for _, v := range letter_map {
+		if v != 0 {
+			return false
+		}
+	}
+	return true
+}
+
 func ConcatenationOfArray(nums []int) []int {
 	new_nums := make([]int, len(nums)*2)
 

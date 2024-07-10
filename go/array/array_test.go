@@ -1,5 +1,4 @@
 package array
-
 import (
 	"reflect"
 	"strconv"
@@ -44,7 +43,7 @@ func TestValidAnagram(t *testing.T) {
 
 	for _, item := range valid_anagram_test_items {
 		t.Run(strconv.Itoa(item.id), func(t *testing.T) {
-			got := ValidAnagram(item.s, item.t)
+			got := validAnagram_2(item.s, item.t)
 			if got != item.exp {
 				t.Errorf("got: %t, exp: %t", got, item.exp)
 			}
