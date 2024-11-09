@@ -172,12 +172,18 @@ class Arrays {
 			}
 		}
 
-		const top_k_frequencies = Object.
-			values(frequency_counter).
-			sort((a, b) => a - b).
-			slice(0, k);
+		/** @type {number[]}*/
+		const final_results = [];
 
-		return top_k_frequencies;
+
+		const top_k_frequencies = Object.
+			entries(frequency_counter).
+			sort((a, b) => b[1] - a[1]).
+			slice(0, k).
+			map(item => final_results.push(Number(item[0])))
+		;
+
+		return final_results;
 	}
 
 }
