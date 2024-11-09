@@ -14,5 +14,7 @@ declare global {
 		exp: boolean
 	}
 
+	type T_Board_item = string
+	type T_Board = T_Board_item[][]
 
 }

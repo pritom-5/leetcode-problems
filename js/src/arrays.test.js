@@ -1,6 +1,6 @@
 
-import { deepEqual, equal, strictEqual } from "node:assert";
-import test, { describe,  } from "node:test";
+import { deepEqual, equal, strict, strictEqual } from "node:assert";
+import test, { describe, only,  } from "node:test";
 import { arrays } from "./arrays.js";
 
 describe("test hasDuplicate", () => {
@@ -139,9 +139,96 @@ describe ("topKFrequent", () => {
 })
 
 
+//describe("testing 124", {only: true}, () => {
+//	test("test", {only: true} , () => {
+//		console.log("hello there 2");
+//		arrays.testValue();
+//		strictEqual(1, 2);
+//	})
+//})
 
 
+describe("longestConsecutiveSequence", () => {
+	/** 
+	 * @typedef {{id: string, nums: number[], exp: number}} T_Longest_Consecutive_Sequence_test_data
+	 * @type {T_Longest_Consecutive_Sequence_test_data[]}
+	 * */
 
+	const longest_consecutive_cequence_test_data = [
+		{id: "1", nums: [100, 4, 200, 1, 3, 2], exp: 4},
+		{id: "2", nums: [0,3,7,2,5,8,4,6,0,1], exp: 9},
+		{id: "3", nums: [9,1,4,7,3,-1,0,5,8,-1,6], exp: 7},
+	]
+
+	longest_consecutive_cequence_test_data.forEach(({id, nums, exp}) => {
+		test(`test id: ${id}`, () => {
+
+			const output = arrays.longestConsecutiveSequence(nums);
+			strictEqual(output, exp);
+
+		})
+	})
+})
+
+
+describe("validSudoku", {only: true}, () => {
+
+	/** @type {T_Board}*/
+	const board_1 = [
+["5","3",".",".","7",".",".",".","."]
+,["6",".",".","1","9","5",".",".","."]
+,[".","9","8",".",".",".",".","6","."]
+,["8",".",".",".","6",".",".",".","3"]
+,["4",".",".","8",".","3",".",".","1"]
+,["7",".",".",".","2",".",".",".","6"]
+,[".","6",".",".",".",".","2","8","."]
+,[".",".",".","4","1","9",".",".","5"]
+,[".",".",".",".","8",".",".","7","9"]]
+
+
+	/** @type {T_Board}*/
+	const board_2 = [["8","3",".",".","7",".",".",".","."]
+,["6",".",".","1","9","5",".",".","."]
+,[".","9","8",".",".",".",".","6","."]
+,["8",".",".",".","6",".",".",".","3"]
+,["4",".",".","8",".","3",".",".","1"]
+,["7",".",".",".","2",".",".",".","6"]
+,[".","6",".",".",".",".","2","8","."]
+,[".",".",".","4","1","9",".",".","5"]
+,[".",".",".",".","8",".",".","7","9"]]
+
+
+/** @type {T_Board}*/
+const board_3 = [
+[".",".",".",".","5",".",".","1","."],
+[".","4",".","3",".",".",".",".","."],
+[".",".",".",".",".","3",".",".","1"],
+["8",".",".",".",".",".",".","2","."],
+[".",".","2",".","7",".",".",".","."],
+[".","1","5",".",".",".",".",".","."],
+[".",".",".",".",".","2",".",".","."],
+[".","2",".","9",".",".",".",".","."],
+[".",".","4",".",".",".",".",".","."]]
+
+	/** 
+	 * @typedef {{id: string, board: T_Board, exp: boolean}} T_Valid_Sudoky_Test_Data
+	 * @type {T_Valid_Sudoky_Test_Data[]}
+	 * */
+	const valid_sudoku_test_data = [
+		{id: "1", board: board_1, exp: true},
+		{id: "2", board: board_2, exp: false},
+		{id: "3", board: board_3, exp: false},
+	]
+
+	valid_sudoku_test_data.forEach(({id, board, exp}) => {
+		test(`test id : ${id}`, {only: true}, () => {
+			const output = arrays.validSudoku(board);
+			strictEqual(output, exp);
+		})
+	})
+
+
+})
 
 
 

@@ -1,5 +1,3 @@
-import { log } from "node:console";
-
 class Arrays {
 	/** 
 	 * @param {Array<number>} nums 
@@ -184,6 +182,126 @@ class Arrays {
 		;
 
 		return final_results;
+	}
+
+	/** 
+	 * @param {number[]} nums 
+	 * @returns {number}
+	 * */
+	longestConsecutiveSequence (nums) {
+		const sorted_nums = nums.sort((a, b) => a - b);
+
+		let longest_sequence = 0;
+		let temp_longest_sequence = 1;
+
+		for (let i = 0; i < sorted_nums.length - 1; i++) {
+			if (sorted_nums[i + 1] - sorted_nums[i] === 1) {
+				temp_longest_sequence += 1;
+			} else {
+				temp_longest_sequence = 1;
+			}
+
+		 longest_sequence	= Math.max(longest_sequence, temp_longest_sequence);
+		}
+
+		return longest_sequence;
+	}
+
+	/** @param {T_Board_item[]} nums */
+	#checkSingleLineOfSudoku (nums) {
+
+		for (let i = 0; i < nums.length; i++) {
+
+			/** @type {Record<string, number>}*/
+			const _map = {}
+
+			for (let j = 0; j < 9; j++) {
+				const _num = nums[j];
+
+				if (_num in _map && _num !== ".") {
+					return false;
+				} else {
+					_map[_num] = 1;
+				}
+			}
+		}
+
+		return true;
+	}
+
+
+	/** @param {T_Board} board 
+	 * @returns {boolean}*/
+	#checkHorizontal (board) {
+		for (let i = 0; i < 9; i++) {
+			const _hor_line = board[i];
+			const _output = this.#checkSingleLineOfSudoku(_hor_line);
+			if (!_output) {
+				return false;
+			}
+		}
+
+		return true;
+	}
+
+
+
+	/** @param {T_Board} board 
+	 * @returns {boolean}*/
+	#checkVertical (board) {
+		for (let i = 0; i < 9; i++) {
+			const _ver_line = board[i];
+			const _output = this.#checkSingleLineOfSudoku(_ver_line);
+			if (!_output) {
+				return false;
+			}
+
+		}
+
+		return true;
+	}
+
+	/** @param {T_Board} board 
+	 * @returns {boolean}
+	 * */
+	#check3x3Box (board) {
+		for (let i = 0; i < 9; i += 3) {
+			for (let j = 0; j < 9; j += 3) {
+
+				const _nums = [];
+
+				for (let k = i; k < i + 3; k++) {
+					for (let l = i; l < i + 3; l++) {
+						_nums.push(board[k][l]);
+					}
+				}
+
+				console.log("lines:-----> ", _nums);
+
+				const _output = this.#checkSingleLineOfSudoku(_nums);
+				if (!_output)  {
+					return false;
+				}
+				
+			}
+		}
+
+		return true;
+
+	}
+
+	/** 
+	 * @param {T_Board} board 
+	 * @returns {boolean}
+	 * */
+	validSudoku (board) {
+
+		return this.#checkVertical(board) && this.#checkHorizontal(board) && this.#check3x3Box(board);
+	}
+
+
+	testValue () {
+		console.log("hello there");
 	}
 
 }
