@@ -30,5 +30,42 @@ function validPallindrome (s) {
 	return reversed === s;
 }
 
-const t = "a man is, lying on the floor";
-validPallindrome(t);
+
+
+(function tryLoops () {
+	for (let i = 0; i < 9; i+= 3) {
+		for (let j = 0; j < 9; j+= 3) {
+			console.log(j, i);
+		}
+		console.log("----------------");
+	}
+})()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
