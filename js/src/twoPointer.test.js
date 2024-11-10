@@ -22,7 +22,7 @@ describe ("sortedTwoSum", {only: false}, () => {
 });
 
 
-describe ("waterContainer", {only: true}, () => {
+describe ("waterContainer", {only: false}, () => {
 	/**
 	 * @typedef {{id: string, height: number[], exp: number}} T_Water_Container_Test 
 	 * @type {T_Water_Container_Test[]}
@@ -33,7 +33,7 @@ describe ("waterContainer", {only: true}, () => {
 	]
 
 	water_container_test_data.forEach(({id, height, exp}) => {
-		test(`test no: ${id}`, {only: true},() => {
+		test(`test no: ${id}`, {only: false},() => {
 			const res = two_pointer.waterContainer(height);
 			deepEqual(exp, res);
 		})
