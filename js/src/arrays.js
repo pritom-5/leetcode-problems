@@ -231,15 +231,8 @@ class Arrays {
   /** @param {T_Board} board
    * @returns {boolean}*/
   #checkVertical(board) {
-
     for (let i = 0; i < 9; i++) {
-			/** @type {T_Board_item[]}*/
-      const _ver_line = [];
-
-			for (let j = 0; j < 9; j++) {
-				_ver_line.push(board[j][i]);
-			}
-
+      const _ver_line = board[i];
       const _output = this.#checkSingleLineOfSudoku(_ver_line);
       if (!_output) {
         return false;
@@ -258,12 +251,22 @@ class Arrays {
         const _nums = [];
 
         for (let k = i; k < i + 3; k++) {
-          for (let l = j; l < j + 3; l++) {
+          for (let l = i; l < i + 3; l++) {
             _nums.push(board[k][l]);
           }
         }
 
-        console.log("lines -> ", _nums);
+        // 	["5","3",".",".","7",".",".",".","."]
+        // ,["6",".",".","1","9","5",".",".","."]
+        // ,[".","9","8",".",".",".",".","6","."]
+        // ,["8",".",".",".","6",".",".",".","3"]
+        // ,["4",".",".","8",".","3",".",".","1"]
+        // ,["7",".",".",".","2",".",".",".","6"]
+        // ,[".","6",".",".",".",".","2","8","."]
+        // ,[".",".",".","4","1","9",".",".","5"]
+        // ,[".",".",".",".","8",".",".","7","9"]]
+
+        console.log("lines:-----> ", _nums);
 
         const _output = this.#checkSingleLineOfSudoku(_nums);
         if (!_output) {
