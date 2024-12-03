@@ -18,7 +18,7 @@ func TestContainsDuplicate(t *testing.T) {
 
 	for _, test_item := range contains_duplicate_test_items {
 		t.Run(strconv.Itoa(test_item.id), func(t *testing.T) {
-			got := ContainsDuplicate(test_item.nums)
+			got := containsDuplicate_2(test_item.nums)
 
 			if got != test_item.expect {
 				t.Errorf("got: %t, expect: %t", got, test_item.expect)

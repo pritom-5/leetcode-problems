@@ -27,6 +27,22 @@ func ContainsDuplicate(nums []int) bool {
 	return false
 }
 
+func containsDuplicate_2 (nums []int) bool {
+
+	nums_map := make(map[int]bool)
+
+	for _, num := range nums {
+		if _, ok := nums_map[num]; ok {
+			return true
+		} 
+		nums_map[num] = true
+	}
+	return false
+}
+
+
+
+
 func isAllItemsOfArrayZero(arr [26]int) bool {
 	for _, item := range arr {
 		if item != 0 {
