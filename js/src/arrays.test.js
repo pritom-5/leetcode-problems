@@ -126,8 +126,8 @@ describe("topKFrequent", () => {
   });
 });
 
-//describe("testing 124", {only: true}, () => {
-//	test("test", {only: true} , () => {
+//describe("testing 124", {only: false}, () => {
+//	test("test", {only: false} , () => {
 //		console.log("hello there 2");
 //		arrays.testValue();
 //		strictEqual(1, 2);

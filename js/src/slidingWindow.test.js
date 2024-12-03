@@ -46,7 +46,7 @@ describe("longestSubstring", {only: false},() => {
 
 })
 
-describe("characterReplacement", {only: true}, () => {
+describe("characterReplacement", {only: false}, () => {
 
 	/** 
 	 * @typedef {{id: string, s: string, k: number, exp: number}} T_Character_Replacement
@@ -58,7 +58,7 @@ describe("characterReplacement", {only: true}, () => {
 	]
 
 	character_replacement_test_data.forEach(({id, s, k, exp}) => {
-		test(`test id: ${id}`, {only: true}, () => {
+		test(`test id: ${id}`, {only: false}, () => {
 			const output = sliding_window.characterReplacement(s, k);
 			strictEqual(output, exp);
 		})
